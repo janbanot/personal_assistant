@@ -1,0 +1,11 @@
+# Feature ideas
+- discord bot
+- create handful of prompts that can be used in various situations eg. correct grammar, wording, translate into diffrent languages
+- create a day summary based on the calendar events
+- help creating notes on content consumed (books, articles, videos, podcasts, films, series etc.)
+- ask questions and look for staff online (google api RAG) - or maybe should I just use perplexity model?
+- mode for creative ideas discussion, brainstorming, problem solving - agent like?
+- remind about diffrent things based on the created events
+- recurring reminders about standing up, looking away from the screen etc.
+- summarize yt video, podcast or article
+- available in watch/phone shortcuts (voice assistant)
