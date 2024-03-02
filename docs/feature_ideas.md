@@ -1,4 +1,8 @@
 # Feature ideas
+- long term memory
+    - config file with the basic info about the user to give the context
+    - feature to save info to long term memory
+    - feature to retrieve info from long term memory
 - discord bot
 - create handful of prompts that can be used in various situations eg. correct grammar, wording, translate into diffrent languages
 - create a day summary based on the calendar events
