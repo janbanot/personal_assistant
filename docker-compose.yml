@@ -1,0 +1,33 @@
+version: '3.9'
+
+services:
+  assistant_api:
+    restart: on-failure
+    build:
+      context:  ./
+      dockerfile: Dockerfile
+    depends_on:
+      - assistant_db
+    environment:
+      POSTGRES_URL: ${POSTGRES_URL}
+  assistant_proxy:
+    restart: on-failure
+    build:
+      context:  ./nginx
+      args:
+        env: prod
+      dockerfile: Dockerfile
+    depends_on:
+      - assistant_api
+  assistant_db:
+    image: postgres:latest
+    restart: on-failure
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+
+volumes:
+  postgres_data:

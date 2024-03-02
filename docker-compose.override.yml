@@ -1,0 +1,13 @@
+version: '3.9'
+
+services:
+  assistant_proxy:
+    build:
+      context: ./nginx
+      args:
+        env: local
+      dockerfile: Dockerfile
+    ports:
+      - "8081:8081"
+    depends_on:
+      - assistant_api
