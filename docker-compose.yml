@@ -4,16 +4,17 @@ services:
   assistant_api:
     restart: on-failure
     build:
-      context:  ./
+      context: ./
       dockerfile: Dockerfile
     depends_on:
       - assistant_db
     environment:
       POSTGRES_URL: ${POSTGRES_URL}
+      PYTHONPATH: /usr/src/app
   assistant_proxy:
     restart: on-failure
     build:
-      context:  ./nginx
+      context: ./nginx
       args:
         env: prod
       dockerfile: Dockerfile
@@ -28,6 +29,18 @@ services:
       POSTGRES_DB: ${POSTGRES_DB}
     volumes:
       - postgres_data:/var/lib/postgresql/data/
+  assistant_test:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    command: pytest tests/
+    volumes:
+      - .:/code
+    depends_on:
+      - assistant_db
+    environment:
+      POSTGRES_URL: ${POSTGRES_URL}
+      PYTHONPATH: /usr/src/app
 
 volumes:
   postgres_data:

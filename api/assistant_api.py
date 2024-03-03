@@ -6,7 +6,7 @@ load_dotenv()
 app = Flask(__name__)
 
 
-@app.route('/', methods=['GET', 'POST'])
+@app.route('/', methods=['GET'])
 def home():
     if (request.method == 'GET'):
         data = "hello world"

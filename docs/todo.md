@@ -6,5 +6,8 @@
     - [x] proxy
     - [x] db (postgres)
     - [x] docker-compose
-- [] add db migrations mechanism
+- [x] add db migrations mechanism
+- [x] add unit tests
 - [] add token-based authentication (JWT)
+- [] configure CI/CD - github actions
+
