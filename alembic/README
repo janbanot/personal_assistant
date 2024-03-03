@@ -1,0 +1,10 @@
+# Alembic Migrations
+Examples of using Alembic to manage database migrations:
+- to apply migrations to the database, run the following command:
+```bash
+alembic upgrade head
+```
+- to apply migration in docker-compose, run the following command:
+```bash
+docker-compose exec assistant_api alembic upgrade head
+```
