@@ -8,6 +8,7 @@
     - [x] docker-compose
 - [x] add db migrations mechanism
 - [x] add unit tests
-- [] add token-based authentication (JWT)
+- [x] add token-based authentication (JWT)
+- [] add test user and login endpoint
 - [] configure CI/CD - github actions
 
