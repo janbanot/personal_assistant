@@ -7,7 +7,8 @@ from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import Column, Integer, String
 from flask_marshmallow import Marshmallow
 from marshmallow_sqlalchemy import SQLAlchemyAutoSchema
-from flask_jwt_extended import JWTManager, jwt_required
+from flask_jwt_extended import JWTManager, jwt_required, create_access_token
+from werkzeug.security import check_password_hash
 
 load_dotenv()
 app = Flask(__name__)
@@ -36,20 +37,36 @@ def home():
         return jsonify({'data': data})
 
 
+@app.route('/login', methods=['POST'])
+def login():
+    if request.is_json:
+        email = request.json['email']
+        password = request.json['password']
+    else:
+        email = request.form['email']
+        password = request.form['password']
+
+    user = User.query.filter_by(email=email).first()
+    if user and check_password_hash(user.password_hash, password):
+        access_token = create_access_token(identity=email)
+        return jsonify(message='Login Successful', access_token=access_token)
+    else:
+        return jsonify('Bad email or Password'), 401
+
+
 # TODO: fix type and move to a separate file
 class User(db.Model):  # type: ignore
     __tablename__ = 'users'
     id = Column(Integer, primary_key=True)
     email = Column(String, unique=True)
     login = Column(String, unique=True)
-    token = Column(String, unique=True)
     password_hash = Column(String)
 
 
 # TODO: move to a separate file
 class UserSchema(SQLAlchemyAutoSchema):
     class Meta:
-        fields = ('id', 'email', 'login', 'token', 'password_hash')
+        fields = ('id', 'email', 'login', 'password_hash')
 
 
 user_schema = UserSchema()
