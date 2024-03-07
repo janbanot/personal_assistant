@@ -9,6 +9,7 @@
 - [x] add db migrations mechanism
 - [x] add unit tests
 - [x] add token-based authentication (JWT)
-- [] add test user and login endpoint
+- [x] add test user and login endpoint
+- [] add langchain
 - [] configure CI/CD - github actions
 
