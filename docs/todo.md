@@ -11,5 +11,5 @@
 - [x] add token-based authentication (JWT)
 - [x] add test user and login endpoint
 - [] add langchain
+- [] add qdrant
 - [] configure CI/CD - github actions
-

@@ -4,6 +4,7 @@
     - feature to save info to long term memory
     - feature to retrieve info from long term memory
 - discord bot
+- streamlit app?
 - create handful of prompts that can be used in various situations eg. correct grammar, wording, translate into diffrent languages
 - create a day summary based on the calendar events
 - help creating notes on content consumed (books, articles, videos, podcasts, films, series etc.)
@@ -13,3 +14,4 @@
 - recurring reminders about standing up, looking away from the screen etc.
 - summarize yt video, podcast or article
 - available in watch/phone shortcuts (voice assistant)
+
