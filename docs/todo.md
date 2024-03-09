@@ -21,3 +21,5 @@
     - [] analzyze a mapping, how can save to longterm memory can be triggered in conversation
     - [] use that in conversation bot
 - [] configure CI/CD - github actions
+- [] test diffrent models
+    - [] groq
