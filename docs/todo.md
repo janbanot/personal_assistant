@@ -10,8 +10,8 @@
 - [x] add unit tests
 - [x] add token-based authentication (JWT)
 - [x] add test user and login endpoint
-- [] add langchain
-- [] add qdrant
+- [x] add langchain
+- [x] add qdrant
 - [] create conversation bot foundation
 - [] longterm memory and personalization RAG
     - [] create tables for longterm memory in postgres
