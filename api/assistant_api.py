@@ -9,6 +9,7 @@ from flask_marshmallow import Marshmallow
 from marshmallow_sqlalchemy import SQLAlchemyAutoSchema
 from flask_jwt_extended import JWTManager, jwt_required, create_access_token
 from werkzeug.security import check_password_hash
+from api.conversation import chat
 
 load_dotenv()
 app = Flask(__name__)
@@ -52,6 +53,9 @@ def login():
         return jsonify(message='Login Successful', access_token=access_token)
     else:
         return jsonify('Bad email or Password'), 401
+
+
+app.register_blueprint(chat)
 
 
 # TODO: fix type and move to a separate file
