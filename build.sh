@@ -1,10 +1,9 @@
 #!/bin/bash
 
 docker build --no-cache -t assistant_api .
-docker-compose build
 
-if [[ $@ == *"--local"* ]]; then
+if [[ $1 == "--local" ]]; then
   docker-compose -f docker-compose.yml -f docker-compose.override.yml up --build
 else
-  docker-compose up --build
+  docker-compose -f docker-compose.yml up --build
 fi
