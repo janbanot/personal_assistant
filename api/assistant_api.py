@@ -30,7 +30,7 @@ app.logger.info('Starting application')
 
 @app.route('/', methods=['GET'])
 @jwt_required()
-def home():
+def home_route():
     if (request.method == 'GET'):
         data = "hello world"
         app.logger.info('Request: %s', request)
@@ -39,7 +39,7 @@ def home():
 
 
 @app.route('/login', methods=['POST'])
-def login():
+def login_route():
     if request.is_json:
         email = request.json['email']
         password = request.json['password']

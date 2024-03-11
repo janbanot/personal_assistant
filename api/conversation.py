@@ -6,5 +6,5 @@ chat = Blueprint('chat', __name__)
 
 @chat.route('/chat', methods=['GET'])
 @jwt_required()
-def new_route():
+def chat_route():
     return jsonify({"message": "Here will be conversation with chatbot."})

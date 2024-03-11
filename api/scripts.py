@@ -1,4 +1,4 @@
-from assistant_api import User, db, app  # Import your Flask app instance
+from assistant_api import User, db, app
 from werkzeug.security import generate_password_hash
 
 
