@@ -1,4 +1,4 @@
-import dotenv
+from dotenv import load_dotenv
 from langchain_openai import ChatOpenAI
 from langchain.prompts import (
     PromptTemplate,
@@ -8,7 +8,7 @@ from langchain.prompts import (
 )
 from langchain_core.output_parsers import StrOutputParser
 
-dotenv.load_dotenv()
+load_dotenv()
 
 review_template_str = """You are a personal assistant.
 Use the following context to answer questions.
