@@ -1,5 +1,6 @@
 FROM assistant_env
 WORKDIR /usr/src/app
+COPY .env .env
 COPY api ./api
 COPY tests ./tests
 COPY alembic.ini .
