@@ -78,5 +78,5 @@ users_schema = UserSchema(many=True)
 
 
 if __name__ == '__main__':
-    debug_mode = os.getenv('FLASK_DEBUG_MODE', 'False')
-    app.run(debug=debug_mode.lower() == 'true')
+    is_debug = os.getenv('FLASK_DEBUG_MODE', 'False').lower() == 'true'
+    app.run(debug=is_debug)
