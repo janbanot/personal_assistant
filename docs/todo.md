@@ -12,7 +12,9 @@
 - [x] add test user and login endpoint
 - [x] add langchain
 - [x] add qdrant
-- [] create conversation bot foundation
+- [x] create conversation bot foundation
+- [] configure CI/CD - github actions
+- [] add discord bot
 - [] longterm memory and personalization RAG
     - [] create tables for longterm memory in postgres
     - [] analyze if/how it should be indexed in the qdrant
@@ -20,6 +22,5 @@
     - [] add endpoint to save info to longterm memory
     - [] analzyze a mapping, how can save to longterm memory can be triggered in conversation
     - [] use that in conversation bot
-- [] configure CI/CD - github actions
 - [] test diffrent models
     - [] groq
