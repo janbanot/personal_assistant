@@ -14,7 +14,8 @@
 - [x] add qdrant
 - [x] create conversation bot foundation
 - [] configure CI/CD - github actions
-- [] add discord bot
+    - [] fix issue with missing .env file - use github secrets and crate step in workflow to create .env file
+- [x] add discord bot
 - [] longterm memory and personalization RAG
     - [] create tables for longterm memory in postgres
     - [] analyze if/how it should be indexed in the qdrant
