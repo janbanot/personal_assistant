@@ -4,7 +4,7 @@ Introducing a virtual personal assistant designed to simplify your daily tasks. 
 Project built for the [100 commitów](https://100commitow.pl/) competition. Its goal is to develop an open source project for 100 days.
 
 ## Technologies
-[![Technologies](https://skillicons.dev/icons?i=py,flask,postgres,docker)](https://skillicons.dev)
+[![Technologies](https://skillicons.dev/icons?i=py,flask,postgres,docker,githubactions)](https://skillicons.dev)
 
 ## How to run?
 You only need to have docker and docker-compose installed on your machine. Then you can run the following commands:
