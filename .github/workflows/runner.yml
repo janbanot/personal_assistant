@@ -21,12 +21,24 @@ jobs:
             echo "deps_changed=false" >> $GITHUB_ENV
           fi
 
+      - name: Check if only changes were made in docs or README
+        id: check_docs
+        run: |
+          total_changes=$(git diff --name-only ${{ github.event.before }} ${{ github.sha }} | wc -l)
+          docs_changes=$(git diff --name-only ${{ github.event.before }} ${{ github.sha }} | egrep '^docs/|^README.md$' | wc -l)
+          if [ "$total_changes" -eq "$docs_changes" ]; then
+            echo "only_docs_changed=true" >> $GITHUB_ENV
+          else
+            echo "only_docs_changed=false" >> $GITHUB_ENV
+          fi
+
       - name: Run Env
         run: bash env.sh
         if: env.deps_changed == 'true'
 
       - name: Run Build
         run: bash build.sh
+        if: env.only_docs_changed == 'false'
 
       - name: Cleanup Unused Images
         run: docker image prune -f
