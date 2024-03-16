@@ -33,6 +33,13 @@ services:
     image: qdrant/qdrant:latest
     volumes:
       - qdrant_data:/qdrant/storage
+  assistant_bot:
+    restart: on-failure
+    build:
+      context: ./discord_bot
+      dockerfile: Dockerfile
+    volumes:
+      - assistant_bot_data:/app/data
   assistant_test:
     build:
       context: ./
@@ -49,3 +56,4 @@ services:
 volumes:
   postgres_data:
   qdrant_data:
+  assistant_bot_data:
