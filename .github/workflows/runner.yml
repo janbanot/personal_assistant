@@ -12,8 +12,14 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
+      - name: Check for changes in requirements.txt
+        id: check
+        run: |
+          echo "::set-output name=changed::$(git diff --name-only ${{ github.event.before }} ${{ github.sha }} | grep '^requirements.txt$' || echo '')"
+
       - name: Run Env
         run: bash env.sh
+        if: steps.check.outputs.changed != ''
 
       - name: Run Build
         run: bash build.sh
