@@ -1,0 +1,22 @@
+name: Github Action workflow
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  run:
+    runs-on: self-hosted
+    environment: production
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Run Env
+        run: bash env.sh
+
+      - name: Run Build
+        run: bash build.sh
+
+      - name: Cleanup Unused Images
+        run: docker image prune -f
