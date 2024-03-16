@@ -15,11 +15,15 @@ jobs:
       - name: Check for changes in requirements.txt
         id: check
         run: |
-          echo "::set-output name=changed::$(git diff --name-only ${{ github.event.before }} ${{ github.sha }} | grep '^requirements.txt$' || echo '')"
+          if git diff --name-only ${{ github.event.before }} ${{ github.sha }} | grep '^requirements.txt$'; then
+            echo "deps_changed=true" >> $GITHUB_ENV
+          else
+            echo "deps_changed=false" >> $GITHUB_ENV
+          fi
 
       - name: Run Env
         run: bash env.sh
-        if: steps.check.outputs.changed != ''
+        if: env.deps_changed == 'true'
 
       - name: Run Build
         run: bash build.sh
