@@ -20,6 +20,11 @@ Additionally it should be availiable through voice assistant - using watch/phone
 - remind about diffrent things based on the created events
     - feature to create reminder - remind me about sending that email in 30 minutes
     - feature to create recurring reminders - remind me to stand up every 30 minutes
+- save notes/quotes from books, articles, etc.
+    - save notes using chat or voice
+        - save it with tags, so it can be easily categorized and then retrieved
+    - daily summary (readwise like) - send a selected quote or note from the list and present it in the chat
+    - feature to retrieve notes using tags
 
 ### Feature ideas for the future
 - basic app instead of discord server - streamlit app?
