@@ -10,7 +10,7 @@ jobs:
     environment: production
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - name: Check for changes in requirements.txt
         id: check
@@ -31,6 +31,18 @@ jobs:
           else
             echo "only_docs_changed=false" >> $GITHUB_ENV
           fi
+
+      - name: Create .env files
+        run: |
+          echo "KEY=${{ secrets.FLASK_SECRET_KEY }}" > .env
+          echo "KEY=${{ secrets.FLASK_DEBUG_MODE }}" > .env
+          echo "KEY=${{ secrets.POSTGRES_URL }}" > .env
+          echo "KEY=${{ secrets.POSTGRES_USER }}" > .env
+          echo "KEY=${{ secrets.POSTGRES_PASSWORD }}" > .env
+          echo "KEY=${{ secrets.POSTGRES_DB }}" > .env
+          echo "KEY=${{ secrets.OPENAI_API_KEY }}" > .env
+          mkdir -p ./discord_bot/
+          echo "KEY=${{ secrets.DISCORD_TOKEN }}" > ./discord_bot/.env
 
       - name: Run Env
         run: bash env.sh
