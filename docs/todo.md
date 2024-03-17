@@ -13,8 +13,9 @@
 - [x] add langchain
 - [x] add qdrant
 - [x] create conversation bot foundation
-- [] configure CI/CD - github actions
-    - [] fix issue with missing .env file - use github secrets and crate step in workflow to create .env file
+- [x] configure CI/CD - github actions
+    - [x] fix issue with missing .env file - use github secrets and crate step in workflow to create .env file
+- [] create separate workflow for tests
 - [x] add discord bot
 - [] longterm memory and personalization RAG
     - [] create tables for longterm memory in postgres
