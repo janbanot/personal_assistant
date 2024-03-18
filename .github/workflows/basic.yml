@@ -32,7 +32,7 @@ jobs:
           if [ "$total_changes" -eq "$docs_changes" ]; then
             echo "::set-output name=only_docs_changed::true"
           else
-            echo "::set-output name=only_docs_changed::true"
+            echo "::set-output name=only_docs_changed::false"
           fi
 
       - name: Create .env files
