@@ -1,11 +1,11 @@
-name: Github Action build workflow
+name: Build workflow
 
 on:
   push:
     branches: [ main ]
 
 jobs:
-  run:
+  build:
     runs-on: self-hosted
     environment: production
 
