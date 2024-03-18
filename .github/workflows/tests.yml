@@ -49,7 +49,9 @@ jobs:
         if: env.deps_changed == 'true'
 
       - name: Run Build
-        run: bash build.sh
+        run: |
+          export GITHUB_RUN_ID=${{ github.run_id }}
+          bash build.sh
         if: env.only_docs_changed == 'false'
 
       - name: Run Tests
@@ -58,8 +60,9 @@ jobs:
 
       - name: Cleanup Docker images from that run
         run: |
-          docker stop $(docker ps -a -q -f "label=workflow=${{ github.run_id }}")
-          docker rm $(docker ps -a -q -f "label=workflow=${{ github.run_id }}")
+          export GITHUB_RUN_ID=${{ github.run_id }}
+          docker stop $(docker ps -a -q -f "label=workflow=$GITHUB_RUN_ID")
+          docker rm $(docker ps -a -q -f "label=workflow=$GITHUB_RUN_ID")
 
       - name: Cleanup Unused Images
         run: docker image prune -f
