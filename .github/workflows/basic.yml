@@ -1,11 +1,11 @@
-name: Build workflow
+name: Basic Workflow
 
 on:
   push:
     branches: [ main ]
 
 jobs:
-  build:
+  setup:
     runs-on: self-hosted
     environment: production
 
@@ -47,6 +47,44 @@ jobs:
       - name: Run Env
         run: bash env.sh
         if: env.deps_changed == 'true'
+
+  test:
+    needs: setup
+    runs-on: self-hosted
+    environment: production
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Run Build
+        run: |
+          export GITHUB_RUN_ID=${{ github.run_id }}
+          bash build.sh
+        if: env.only_docs_changed == 'false'
+
+      - name: Run Tests
+        run: docker-compose --profile test up --exit-code-from assistant_test assistant_test
+        if: env.only_docs_changed == 'false'
+
+      - name: Cleanup Docker images from that run
+        if: always()
+        run: |
+          export GITHUB_RUN_ID=${{ github.run_id }}
+          docker stop $(docker ps -a -q -f "label=workflow=$GITHUB_RUN_ID")
+          docker rm $(docker ps -a -q -f "label=workflow=$GITHUB_RUN_ID")
+
+      - name: Cleanup Unused Images
+        if: always()
+        run: docker image prune -f
+
+
+  build:
+    needs: test
+    runs-on: self-hosted
+    environment: production
+
+    steps:
+      - uses: actions/checkout@v4
 
       - name: Run Build
         run: |
