@@ -59,10 +59,12 @@ jobs:
         if: env.only_docs_changed == 'false'
 
       - name: Cleanup Docker images from that run
+        if: always()
         run: |
           export GITHUB_RUN_ID=${{ github.run_id }}
           docker stop $(docker ps -a -q -f "label=workflow=$GITHUB_RUN_ID")
           docker rm $(docker ps -a -q -f "label=workflow=$GITHUB_RUN_ID")
 
       - name: Cleanup Unused Images
+        if: always()
         run: docker image prune -f
