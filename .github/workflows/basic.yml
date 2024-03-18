@@ -30,9 +30,9 @@ jobs:
           total_changes=$(git diff --name-only ${{ github.event.before }} ${{ github.sha }} | wc -l)
           docs_changes=$(git diff --name-only ${{ github.event.before }} ${{ github.sha }} | egrep '^docs/|^README.md$' | wc -l)
           if [ "$total_changes" -eq "$docs_changes" ]; then
-            echo "only_docs_changed=true" >> $GITHUB_OUTPUTS
+            echo "only_docs_changed=true" >> $GITHUB_OUTPUT
           else
-            echo "only_docs_changed=false" >> $GITHUB_OUTPUTS
+            echo "only_docs_changed=false" >> $GITHUB_OUTPUT
           fi
 
       - name: Create .env files
