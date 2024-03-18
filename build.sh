@@ -10,13 +10,13 @@ else
   docker-compose -f docker-compose.yml -f docker-compose.workflows.yml up -d --build
 
   # Wait for a short period of time for the containers to start up
-  sleep 30
+  sleep 15
 
   # Check the status of the containers
-  for container in $(docker-compose ps -q); do
-    if [ "$(docker inspect -f '{{.State.Running}}' $container)" != "true" ]; then
-      echo "Container $container is not running correctly"
-      exit 1
-    fi
-  done
+  for container in $(docker ps -q -f "label=workflow=$GITHUB_RUN_ID"); do
+      if [ "$(docker inspect -f '{{.State.Running}}' $container)" != "true" ]; then
+        echo "Container $container is not running correctly"
+        exit 1
+      fi
+    done
 fi
