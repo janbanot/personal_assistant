@@ -21,18 +21,6 @@ jobs:
             echo "deps_changed=false" >> $GITHUB_ENV
           fi
 
-      - name: Create .env files
-        run: |
-          echo "FLASK_SECRET_KEY=${{ secrets.FLASK_SECRET_KEY }}" > .env
-          echo "FLASK_DEBUG_MODE=${{ secrets.FLASK_DEBUG_MODE }}" >> .env
-          echo "POSTGRES_URL=${{ secrets.POSTGRES_URL }}" >> .env
-          echo "POSTGRES_USER=${{ secrets.POSTGRES_USER }}" >> .env
-          echo "POSTGRES_PASSWORD=${{ secrets.POSTGRES_PASSWORD }}" >> .env
-          echo "POSTGRES_DB=${{ secrets.POSTGRES_DB }}" >> .env
-          echo "OPENAI_API_KEY=${{ secrets.OPENAI_API_KEY }}" >> .env
-          mkdir -p ./discord_bot/
-          echo "DISCORD_TOKEN=${{ secrets.DISCORD_TOKEN }}" > ./discord_bot/.env
-
       - name: Run Env
         run: bash env.sh
         if: env.deps_changed == 'true'
@@ -44,6 +32,18 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
+
+      - name: Create .env files
+        run: |
+          echo "FLASK_SECRET_KEY=${{ secrets.FLASK_SECRET_KEY }}" > .env
+          echo "FLASK_DEBUG_MODE=${{ secrets.FLASK_DEBUG_MODE }}" >> .env
+          echo "POSTGRES_URL=${{ secrets.POSTGRES_URL }}" >> .env
+          echo "POSTGRES_USER=${{ secrets.POSTGRES_USER }}" >> .env
+          echo "POSTGRES_PASSWORD=${{ secrets.POSTGRES_PASSWORD }}" >> .env
+          echo "POSTGRES_DB=${{ secrets.POSTGRES_DB }}" >> .env
+          echo "OPENAI_API_KEY=${{ secrets.OPENAI_API_KEY }}" >> .env
+          mkdir -p ./discord_bot/
+          echo "DISCORD_TOKEN=${{ secrets.DISCORD_TOKEN }}" > ./discord_bot/.env
 
       - name: Run Build
         run: |
@@ -72,6 +72,18 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
+
+      - name: Create .env files
+        run: |
+          echo "FLASK_SECRET_KEY=${{ secrets.FLASK_SECRET_KEY }}" > .env
+          echo "FLASK_DEBUG_MODE=${{ secrets.FLASK_DEBUG_MODE }}" >> .env
+          echo "POSTGRES_URL=${{ secrets.POSTGRES_URL }}" >> .env
+          echo "POSTGRES_USER=${{ secrets.POSTGRES_USER }}" >> .env
+          echo "POSTGRES_PASSWORD=${{ secrets.POSTGRES_PASSWORD }}" >> .env
+          echo "POSTGRES_DB=${{ secrets.POSTGRES_DB }}" >> .env
+          echo "OPENAI_API_KEY=${{ secrets.OPENAI_API_KEY }}" >> .env
+          mkdir -p ./discord_bot/
+          echo "DISCORD_TOKEN=${{ secrets.DISCORD_TOKEN }}" > ./discord_bot/.env
 
       - name: Run Build
         run: |
