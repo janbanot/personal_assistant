@@ -1,4 +1,4 @@
-name: Github Action workflow
+name: Github Action build workflow
 
 on:
   push:

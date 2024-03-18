@@ -40,18 +40,17 @@ services:
       dockerfile: Dockerfile
     volumes:
       - assistant_bot_data:/app/data
-  # assistant_test:
-  #   build:
-  #     context: ./
-  #     dockerfile: Dockerfile
-  #   command: pytest tests/
-  #   volumes:
-  #     - .:/code
-  #   depends_on:
-  #     - assistant_db
-  #   environment:
-  #     POSTGRES_URL: ${POSTGRES_URL}
-  #     PYTHONPATH: /usr/src/app
+  assistant_test:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    command: pytest tests/
+    depends_on:
+      - assistant_db
+    environment:
+      POSTGRES_URL: ${POSTGRES_URL}
+      PYTHONPATH: /usr/src/app
+    profiles: [test]
 
 volumes:
   postgres_data:

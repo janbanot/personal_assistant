@@ -3,9 +3,11 @@
 docker build --no-cache -t assistant_api .
 
 if [[ $1 == "--local" ]]; then
-  docker-compose -f docker-compose.yml -f docker-compose.override.yml up --build
+  docker-compose -f docker-compose.yml -f docker-compose.local.yml up --build
+elif [[ $1 == "--test" ]]; then
+  docker-compose --profile test up -d --build
 else
-  docker-compose up -d --build
+  docker-compose -f docker-compose.yml -f docker-compose.workflows.yml up -d --build
 
   # Wait for a short period of time for the containers to start up
   sleep 30

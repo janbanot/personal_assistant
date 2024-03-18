@@ -1,0 +1,21 @@
+version: '3.9'
+
+services:
+  assistant_api:
+    labels:
+      - "workflow=${{ github.run_id }}"
+  assistant_proxy:
+    labels:
+      - "workflow=${{ github.run_id }}"
+  assistant_db:
+    labels:
+      - "workflow=${{ github.run_id }}"
+  assistant_qdrant:
+    labels:
+      - "workflow=${{ github.run_id }}"
+  assistant_bot:
+    labels:
+      - "workflow=${{ github.run_id }}"
+  assistant_test:
+    labels:
+      - "workflow=${{ github.run_id }}"
