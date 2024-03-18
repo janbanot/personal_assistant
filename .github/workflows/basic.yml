@@ -30,9 +30,9 @@ jobs:
           total_changes=$(git diff --name-only ${{ github.event.before }} ${{ github.sha }} | wc -l)
           docs_changes=$(git diff --name-only ${{ github.event.before }} ${{ github.sha }} | egrep '^docs/|^README.md$' | wc -l)
           if [ "$total_changes" -eq "$docs_changes" ]; then
-            echo "::set-output name=only_docs_changed::true"
+            echo "only_docs_changed=true" >> $GITHUB_OUTPUTS
           else
-            echo "::set-output name=only_docs_changed::false"
+            echo "only_docs_changed=false" >> $GITHUB_OUTPUTS
           fi
 
       - name: Create .env files
@@ -63,11 +63,11 @@ jobs:
         run: |
           export GITHUB_RUN_ID=${{ github.run_id }}
           bash build.sh
-        if: needs.setup.outputs.only_docs_changed == 'false'
+        if: needs.setup.check_docs.outputs.only_docs_changed == 'false'
 
       - name: Run Tests
         run: docker-compose --profile test up --exit-code-from assistant_test assistant_test
-        if: needs.setup.outputs.only_docs_changed == 'false'
+        if: needs.setup.check_docs.outputs.only_docs_changed == 'false'
 
       - name: Cleanup Docker images from that run
         if: always()
