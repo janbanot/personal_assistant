@@ -59,6 +59,7 @@ app.register_blueprint(chat)
 
 
 # TODO: fix type and move to a separate file
+# TMP: trigger build
 class User(db.Model):  # type: ignore
     __tablename__ = 'users'
     id = Column(Integer, primary_key=True)
