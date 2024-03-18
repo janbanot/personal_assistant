@@ -9,9 +9,6 @@ jobs:
     runs-on: self-hosted
     environment: production
 
-    outputs:
-      only_docs_changed: ${{ steps.check.outputs.only_docs_changed }}
-
     steps:
       - uses: actions/checkout@v4
 
@@ -22,17 +19,6 @@ jobs:
             echo "deps_changed=true" >> $GITHUB_ENV
           else
             echo "deps_changed=false" >> $GITHUB_ENV
-          fi
-
-      - name: Check if only changes were made in docs or README
-        id: check_docs
-        run: |
-          total_changes=$(git diff --name-only ${{ github.event.before }} ${{ github.sha }} | wc -l)
-          docs_changes=$(git diff --name-only ${{ github.event.before }} ${{ github.sha }} | egrep '^docs/|^README.md$' | wc -l)
-          if [ "$total_changes" -eq "$docs_changes" ]; then
-            echo "only_docs_changed=true" >> $GITHUB_OUTPUT
-          else
-            echo "only_docs_changed=false" >> $GITHUB_OUTPUT
           fi
 
       - name: Create .env files
@@ -63,11 +49,9 @@ jobs:
         run: |
           export GITHUB_RUN_ID=${{ github.run_id }}
           bash build.sh
-        if: needs.setup.check_docs.outputs.only_docs_changed == 'false'
 
       - name: Run Tests
         run: docker-compose --profile test up --exit-code-from assistant_test assistant_test
-        if: needs.setup.check_docs.outputs.only_docs_changed == 'false'
 
       - name: Cleanup Docker images from that run
         if: always()
@@ -82,7 +66,7 @@ jobs:
 
 
   build:
-    needs: [setup, test]
+    needs: [test]
     runs-on: self-hosted
     environment: production
 
@@ -93,7 +77,6 @@ jobs:
         run: |
           export GITHUB_RUN_ID=${{ github.run_id }}
           bash build.sh
-        if: needs.setup.outputs.only_docs_changed == 'false'
 
       - name: Cleanup Unused Images
         run: docker image prune -f
