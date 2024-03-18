@@ -55,7 +55,7 @@ jobs:
         if: env.only_docs_changed == 'false'
 
       - name: Run Tests
-        run: docker-compose up assistant_test
+        run: docker-compose up --exit-code-from assistant_test assistant_test
         if: env.only_docs_changed == 'false'
 
       - name: Cleanup Docker images from that run
