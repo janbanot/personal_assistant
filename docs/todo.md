@@ -16,6 +16,10 @@
 - [x] configure CI/CD - github actions
     - [x] fix issue with missing .env file - use github secrets and crate step in workflow to create .env file
 - [] create separate workflow for tests
+    - [] rethink whole workflow once again!
+        - [] check what makes sense i.e. build, then reuse that for tests and if ok, don't build again
+        - [] check why postgres is not desctroyed correctly after tests
+        - [] check why changes in test were not taken into consideration!
 - [x] add discord bot
 - [] longterm memory and personalization RAG
     - [] create tables for longterm memory in postgres
