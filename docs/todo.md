@@ -30,3 +30,4 @@
     - [] use that in conversation bot
 - [] test diffrent models
     - [] groq
+    - [] claude
