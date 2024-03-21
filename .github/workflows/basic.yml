@@ -25,7 +25,7 @@ jobs:
         run: bash env.sh
         if: env.deps_changed == 'true'
 
-  test:
+  build:
     needs: setup
     runs-on: self-hosted
     environment: production
@@ -50,23 +50,8 @@ jobs:
           export GITHUB_RUN_ID=${{ github.run_id }}
           bash build.sh
 
-      - name: Run Tests
-        run: docker-compose --profile test up --exit-code-from assistant_test assistant_test
-
-      - name: Cleanup Docker images from that run
-        if: always()
-        run: |
-          export GITHUB_RUN_ID=${{ github.run_id }}
-          docker stop $(docker ps -a -q -f "label=workflow=$GITHUB_RUN_ID")
-          docker rm $(docker ps -a -q -f "label=workflow=$GITHUB_RUN_ID")
-
-      - name: Cleanup Unused Images
-        if: always()
-        run: docker image prune -f
-
-
-  build:
-    needs: [test]
+  test:
+    needs: build
     runs-on: self-hosted
     environment: production
 
@@ -85,10 +70,25 @@ jobs:
           mkdir -p ./discord_bot/
           echo "DISCORD_TOKEN=${{ secrets.DISCORD_TOKEN }}" > ./discord_bot/.env
 
-      - name: Run Build
+      - name: Run Tests
+        id: tests
+        run: |
+          docker-compose --profile test up --exit-code-from assistant_test assistant_test || echo "TEST_STATUS=failed" >> $GITHUB_ENV
+
+      - name: Cleanup Docker images from that run
+        if: env.TEST_STATUS == 'failed'
         run: |
           export GITHUB_RUN_ID=${{ github.run_id }}
-          bash build.sh
+          docker stop $(docker ps -a -q -f "label=workflow=$GITHUB_RUN_ID")
+          docker rm $(docker ps -a -q -f "label=workflow=$GITHUB_RUN_ID")
+
+      - name: Cleanup Test Container
+        if: env.TEST_STATUS != 'failed'
+        run: |
+          export GITHUB_RUN_ID=${{ github.run_id }}
+          docker stop $(docker ps -a -q -f "label=assistant_test")
+          docker rm $(docker ps -a -q -f "label=assistant_test")
 
       - name: Cleanup Unused Images
+        if: always()
         run: docker image prune -f
