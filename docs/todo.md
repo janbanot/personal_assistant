@@ -31,6 +31,8 @@
 - [] test diffrent models
     - [] groq
     - [] claude
+    - [] gemini
+- [] change used library from request to aiohttp to allows async requests
 
 # Bugs
 - [] fix issue with first build on the server (if there are no changes to the .env the setup will not be run and the whole build will fail)

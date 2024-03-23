@@ -2,6 +2,7 @@ import os
 import sys
 import logging
 from dotenv import load_dotenv
+from datetime import timedelta
 from flask import Flask, request, jsonify
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import Column, Integer, String
@@ -21,38 +22,40 @@ db = SQLAlchemy(app)
 ma = Marshmallow(app)
 jwt = JWTManager(app)
 
-logging.basicConfig(
-    level=logging.DEBUG,
-    handlers=[logging.StreamHandler(sys.stdout)]
-)
-app.logger.info('Starting application')
+logging.basicConfig(level=logging.DEBUG, handlers=[logging.StreamHandler(sys.stdout)])
+app.logger.info("Starting application")
 
 
-@app.route('/', methods=['GET'])
+@app.route("/", methods=["GET"])
 @jwt_required()
 def home_route():
-    if (request.method == 'GET'):
+    if request.method == "GET":
         data = "hello world"
-        app.logger.info('Request: %s', request)
-        app.logger.info('Response: %s', data)
-        return jsonify({'data': data})
+        app.logger.info("Request: %s", request)
+        app.logger.info("Response: %s", data)
+        return jsonify({"data": data})
 
 
-@app.route('/login', methods=['POST'])
+@app.route("/login", methods=["POST"])
 def login_route():
     if request.is_json:
-        email = request.json['email']
-        password = request.json['password']
+        email = request.json["email"]
+        password = request.json["password"]
     else:
-        email = request.form['email']
-        password = request.form['password']
+        email = request.form["email"]
+        password = request.form["password"]
 
     user = User.query.filter_by(email=email).first()
     if user and check_password_hash(user.password_hash, password):
-        access_token = create_access_token(identity=email)
-        return jsonify(message='Login Successful', access_token=access_token)
+        expires = timedelta(minutes=30)
+        access_token = create_access_token(identity=email, expires_delta=expires)
+        return jsonify(
+            message="Login Successful",
+            access_token=access_token,
+            expires_in=expires.total_seconds(),
+        )
     else:
-        return jsonify('Bad email or Password'), 401
+        return jsonify("Bad email or Password"), 401
 
 
 app.register_blueprint(chat)
@@ -61,7 +64,7 @@ app.register_blueprint(chat)
 # TODO: fix type and move to a separate file
 # TMP: trigger build
 class User(db.Model):  # type: ignore
-    __tablename__ = 'users'
+    __tablename__ = "users"
     id = Column(Integer, primary_key=True)
     email = Column(String, unique=True)
     login = Column(String, unique=True)
@@ -71,13 +74,13 @@ class User(db.Model):  # type: ignore
 # TODO: move to a separate file
 class UserSchema(SQLAlchemyAutoSchema):
     class Meta:
-        fields = ('id', 'email', 'login', 'password_hash')
+        fields = ("id", "email", "login", "password_hash")
 
 
 user_schema = UserSchema()
 users_schema = UserSchema(many=True)
 
 
-if __name__ == '__main__':
-    is_debug = os.getenv('FLASK_DEBUG_MODE', 'False').lower() == 'true'
+if __name__ == "__main__":
+    is_debug = os.getenv("FLASK_DEBUG_MODE", "False").lower() == "true"
     app.run(debug=is_debug)
