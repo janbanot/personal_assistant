@@ -10,7 +10,7 @@ from flask_marshmallow import Marshmallow
 from marshmallow_sqlalchemy import SQLAlchemyAutoSchema
 from flask_jwt_extended import JWTManager, jwt_required, create_access_token
 from werkzeug.security import check_password_hash
-from api.conversation import chat
+from api.conversation import chat, clear
 
 load_dotenv()
 app = Flask(__name__)
@@ -59,6 +59,7 @@ def login_route():
 
 
 app.register_blueprint(chat)
+app.register_blueprint(clear)
 
 
 # TODO: fix type and move to a separate file

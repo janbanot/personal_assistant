@@ -1,4 +1,5 @@
 import requests
+import json
 import globals
 from datetime import datetime, timedelta
 
@@ -39,4 +40,22 @@ def login():
 def hello_world():
     auth_header = {"Authorization": f"Bearer {globals.api_token}"}
     response = requests.get(URL, headers=auth_header)
+    return response.json()
+
+
+def chat(message):
+    headers = {
+        "Authorization": f"Bearer {globals.api_token}",
+        "Content-Type": "application/json"
+    }
+    url = URL + "chat"
+    data = {"message": message}
+    response = requests.post(url, headers=headers, data=json.dumps(data))
+    return response.json()['message']
+
+
+def clear_context():
+    headers = {"Authorization": f"Bearer {globals.api_token}"}
+    url = URL + "clear-context"
+    response = requests.post(url, headers=headers)
     return response.json()

@@ -22,7 +22,8 @@ If the Assistant does not know the answer to a question, it truthfully says it d
 Current conversation:
 {history}
 Human: {input}
-AI Assistant:"""
+AI Assistant:
+"""
 
 PROMPT = PromptTemplate(input_variables=["history", "input"], template=template)
 context_memory = ConversationSummaryMemory(llm=ChatOpenAI(), ai_prefix="Assistant")
@@ -34,6 +35,7 @@ conversation = ConversationChain(
 )
 
 chat = Blueprint('chat', __name__)
+clear = Blueprint('clear', __name__)
 
 
 @chat.route('/chat', methods=['POST'])
@@ -45,3 +47,10 @@ def chat_route():
     # context_memory.clear()
     result = conversation.predict(input=input_text)
     return jsonify({"message": result})
+
+
+@clear.route('/clear-context', methods=['POST'])
+@jwt_required()
+def clear_route():
+    context_memory.clear()
+    return jsonify({"message": "Context memory cleared"})
