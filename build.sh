@@ -5,7 +5,7 @@ docker build --no-cache -t assistant_api .
 if [[ $1 == "--local" ]]; then
   docker-compose -f docker-compose.yml -f docker-compose.local.yml up --build
 elif [[ $1 == "--test" ]]; then
-  docker-compose --profile test up -d --build
+  docker-compose up --build assistant_test
 else
   docker-compose -f docker-compose.yml -f docker-compose.workflows.yml up -d --build
 

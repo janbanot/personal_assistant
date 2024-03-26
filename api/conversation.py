@@ -25,6 +25,7 @@ Human: {input}
 AI Assistant:
 """
 
+# TODO: Check why langchain default template example is sent in the context with every message?
 PROMPT = PromptTemplate(input_variables=["history", "input"], template=template)
 context_memory = ConversationSummaryMemory(llm=ChatOpenAI(), ai_prefix="Assistant")
 conversation = ConversationChain(
@@ -43,8 +44,6 @@ clear = Blueprint('clear', __name__)
 def chat_route():
     data = request.get_json()
     input_text = data.get('message', '')
-    # TODO: figure out out to handle memory clearing to have a new conversation with new context
-    # context_memory.clear()
     result = conversation.predict(input=input_text)
     return jsonify({"message": result})
 

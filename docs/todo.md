@@ -17,10 +17,11 @@
     - [x] fix issue with missing .env file - use github secrets and crate step in workflow to create .env file
 - [x] rethink whole CI/CD workflow once again!
     - [x] check what makes sense i.e. build, then reuse that for tests and if ok, don't build again
-    - [] check why postgres is not desctroyed correctly after tests
     - [x] check why changes in test were not taken into consideration!
 - [x] add discord bot
-- [] add basic option to talk with bot using model
+- [x] add basic option to talk with bot using model
+- [] figure out how to clear context aoutomaticaly after some time
+- [] figure out how to categorize message from user automatically, without $command
 - [] longterm memory and personalization RAG
     - [] create tables for longterm memory in postgres
     - [] analyze if/how it should be indexed in the qdrant
@@ -36,3 +37,4 @@
 
 # Bugs
 - [] fix issue with first build on the server (if there are no changes to the .env the setup will not be run and the whole build will fail)
+- [] check why postgres is not destroyed correctly after tests

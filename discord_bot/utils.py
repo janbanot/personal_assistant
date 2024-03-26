@@ -58,4 +58,4 @@ def clear_context():
     headers = {"Authorization": f"Bearer {globals.api_token}"}
     url = URL + "clear-context"
     response = requests.post(url, headers=headers)
-    return response.json()
+    return response.json()['message']

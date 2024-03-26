@@ -45,8 +45,6 @@ services:
       context: ./
       dockerfile: Dockerfile
     command: pytest tests/
-    depends_on:
-      - assistant_db
     environment:
       POSTGRES_URL: ${POSTGRES_URL}
       PYTHONPATH: /usr/src/app
