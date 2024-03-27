@@ -31,7 +31,8 @@
     - [] use that in conversation bot
 - [] test diffrent models
     - [] groq
-    - [] claude
+    - [] anthropic claude
+    - [] anthropic haiku
     - [] gemini
 - [] change used library from request to aiohttp to allows async requests
 
