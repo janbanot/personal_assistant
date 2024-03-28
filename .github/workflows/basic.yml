@@ -75,12 +75,8 @@ jobs:
         run: |
           docker-compose up --build --exit-code-from assistant_test assistant_test
 
-      - name: Set Test Status if Failed
-        if: ${{ failure() }}
-        run: echo "TEST_STATUS=failed" >> $GITHUB_ENV
-
       - name: Cleanup Docker images from that run
-        if: env.TEST_STATUS == 'failed'
+        if: ${{ failure() }}
         run: |
           export GITHUB_RUN_ID=${{ github.run_id }}
           docker stop $(docker ps -a -q -f "label=workflow=$GITHUB_RUN_ID")
