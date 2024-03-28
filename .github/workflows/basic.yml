@@ -73,7 +73,7 @@ jobs:
       - name: Run Tests
         id: tests
         run: |
-          docker-compose --profile test up --name assistant_test_container --exit-code-from assistant_test assistant_test
+          docker-compose up --build --exit-code-from assistant_test assistant_test
 
       - name: Set Test Status if Failed
         if: ${{ failure() }}
@@ -89,9 +89,9 @@ jobs:
       - name: Cleanup Test Container
         if: always()
         run: |
-          if [ "$(docker ps -a -q -f name=assistant_test_container)" ]; then
-            docker stop assistant_test_container
-            docker rm assistant_test_container
+          if [ "$(docker ps -a -q -f name=assistant_test)" ]; then
+            docker-compose stop assistant_test
+            docker-compose rm -f assistant_test
           fi
 
       - name: Cleanup Unused Images
