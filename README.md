@@ -6,6 +6,9 @@ Project built for the [100 commitów](https://100commitow.pl/) competition. Its 
 ## Technologies
 [![Technologies](https://skillicons.dev/icons?i=py,flask,postgres,docker,githubactions)](https://skillicons.dev)
 
+## Architecture diagram
+![Architecture diagram](docs/diagram.png)
+
 ## How to run?
 You only need to have docker and docker-compose installed on your machine. Then you can run the following commands:
 1. Clone the repository```git clone https://github.com/janbanot/personal_assistant.git```
