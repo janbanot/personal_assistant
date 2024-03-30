@@ -16,6 +16,26 @@ You only need to have docker and docker-compose installed on your machine. Then 
 3. Build the project ```bash build.sh```
     - Build the project using local docker-compose settings ```bash build.sh --local```
 
+## Current state of the project
+### Project architecture
+- [x] Dockerized environment
+- [x] CI/CD pipeline
+- [x] test framework
+- [x] the first basic tests are implemented.
+
+### API
+- [x] token-based authentication and login process
+- [x] endpoint to communicate with the assistant
+
+### Discord bot
+- [x] bot configuration
+- [x] command to communicate with the assistant
+
+### Next steps:
+- Improve chatbot functionalities
+- Add predefined prompts to cover frequent use cases
+- Add memory to the chatbot (information about the user, context of the conversation, possibility to save data)
+
 ## Read more about the project
 - [feature ideas](docs/feature_ideas.md)
 - [todo list](docs/todo.md)
