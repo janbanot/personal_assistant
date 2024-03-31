@@ -17,6 +17,11 @@ def login(client, email, password):
     return client.post("/login", json=data, headers=headers)
 
 
+def chat(client, message, headers):
+    data = {"message": message}
+    return client.post("/chat", json=data, headers=headers)
+
+
 def test_login_route(client):
     response = login(client, "test@test.com", "test1")
     assert response.status_code == 200
@@ -35,3 +40,14 @@ def test_login_route_with_incorrect_email(client):
     response = login(client, "test1@test.com", "test1")
     assert response.status_code == 401
     assert "access_token" not in response.json
+
+
+def test_access_chat_route_with_valid_token(client):
+    login_response = login(client, "test@test.com", "test1")
+    valid_token = login_response.json["access_token"]
+    headers = {
+        "Content-Type": "application/json",
+        "Authorization": f"Bearer {valid_token}",
+    }
+    chat_response = chat(client, "hello", headers)
+    assert chat_response.status_code == 200

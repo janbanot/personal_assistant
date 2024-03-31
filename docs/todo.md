@@ -35,6 +35,7 @@
     - [] anthropic haiku
     - [] gemini
 - [] change used library from request to aiohttp to allows async requests
+- [] add types to the project
 
 # Bugs
 - [] fix issue with first build on the server (if there are no changes to the .env the setup will not be run and the whole build will fail)
