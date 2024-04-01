@@ -20,7 +20,7 @@
     - [x] check why changes in test were not taken into consideration!
 - [x] add discord bot
 - [x] add basic option to talk with bot using model
-- [] figure out how to clear context aoutomaticaly after some time
+- [] figure out how to clear context automaticaly after some time
 - [] figure out how to categorize message from user automatically, without $command
 - [] longterm memory and personalization RAG
     - [] create tables for longterm memory in postgres
