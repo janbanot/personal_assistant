@@ -1,3 +1,4 @@
+![logo](docs/logo.png)
 # Personal Assistant
 Introducing a virtual personal assistant designed to simplify your daily tasks. The assistant can be accessed through the Command Line Interface (CLI) or as a Discord bot. With the assistance of Generative AI, it automates daily activities, making your life more efficient and organized.
 
