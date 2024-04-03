@@ -1,4 +1,5 @@
-![logo](docs/logo.png)
+<p align="center"><img src="docs/logo.png" alt="logo" width="500"/></p>
+
 # Personal Assistant
 Introducing a virtual personal assistant designed to simplify your daily tasks. The assistant can be accessed through the Command Line Interface (CLI) or as a Discord bot. With the assistance of Generative AI, it automates daily activities, making your life more efficient and organized.
 
@@ -8,7 +9,7 @@ Project built for the [100 commitów](https://100commitow.pl/) competition. Its 
 [![Technologies](https://skillicons.dev/icons?i=py,flask,postgres,docker,githubactions)](https://skillicons.dev)
 
 ## Architecture diagram
-![Architecture diagram](docs/diagram.png)
+<p align="center"><img src="docs/diagram.png" alt="architecture diagram" width="640"/></p>
 
 ## How to run?
 You only need to have docker and docker-compose installed on your machine. Then you can run the following commands:
