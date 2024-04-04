@@ -9,7 +9,7 @@ Project built for the [100 commitów](https://100commitow.pl/) competition. Its 
 [![Technologies](https://skillicons.dev/icons?i=py,flask,postgres,docker,githubactions)](https://skillicons.dev)
 
 ## Architecture diagram
-<p align="center"><img src="docs/diagram.png" alt="architecture diagram" width="640"/></p>
+<p align="center"><img src="docs/diagram.png" alt="architecture diagram" width="500"/></p>
 
 ## How to run?
 You only need to have docker and docker-compose installed on your machine. Then you can run the following commands:
