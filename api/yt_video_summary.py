@@ -4,7 +4,7 @@ from flask_jwt_extended import jwt_required
 
 load_dotenv()
 
-yt_summary = Blueprint('chat', __name__)
+yt_summary = Blueprint('yt_summary', __name__)
 
 
 @yt_summary.route('/yt-summary', methods=['POST'])
