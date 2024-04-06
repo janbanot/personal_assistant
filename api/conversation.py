@@ -13,7 +13,7 @@ openai_key = os.getenv("OPENAI_API_KEY")
 if openai_key is None:
     raise ValueError("OPENAI_API_KEY is not set in the environment variables")
 
-chat_model = ChatOpenAI(model="gpt-3.5-turbo", temperature=0, openai_api_key=openai_key)
+llm = ChatOpenAI(model="gpt-3.5-turbo", temperature=0, openai_api_key=openai_key)
 
 template = """The following is a conversation between a human and an AI personal assistant.
 The Assistant provide clear and concise answers to the with minimum unnecessary information.
@@ -30,25 +30,25 @@ PROMPT = PromptTemplate(input_variables=["history", "input"], template=template)
 context_memory = ConversationSummaryMemory(llm=ChatOpenAI(), ai_prefix="Assistant")
 conversation = ConversationChain(
     prompt=PROMPT,
-    llm=chat_model,
+    llm=llm,
     verbose=True,
     memory=context_memory,
 )
 
-chat = Blueprint('chat', __name__)
-clear = Blueprint('clear', __name__)
+chat = Blueprint("chat", __name__)
+clear = Blueprint("clear", __name__)
 
 
-@chat.route('/chat', methods=['POST'])
+@chat.route("/chat", methods=["POST"])
 @jwt_required()
 def chat_route():
     data = request.get_json()
-    input_text = data.get('message', '')
+    input_text = data.get("message", "")
     result = conversation.predict(input=input_text)
     return jsonify({"message": result})
 
 
-@clear.route('/clear-context', methods=['POST'])
+@clear.route("/clear-context", methods=["POST"])
 @jwt_required()
 def clear_route():
     context_memory.clear()
