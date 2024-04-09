@@ -28,6 +28,7 @@ You only need to have docker and docker-compose installed on your machine. Then 
 ### API
 - [x] token-based authentication and login process
 - [x] endpoint to communicate with the assistant
+- [x] endpoint to get YT video summary
 
 ### Discord bot
 - [x] bot configuration

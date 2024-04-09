@@ -20,6 +20,7 @@
     - [x] check why changes in test were not taken into consideration!
 - [x] add discord bot
 - [x] add basic option to talk with bot using model
+- [] YT video summary from different languages (whisper?)
 - [] figure out how to clear context automaticaly after some time
 - [] figure out how to categorize message from user automatically, without $command
 - [] longterm memory and personalization RAG
@@ -36,6 +37,7 @@
     - [] gemini
 - [] change used library from request to aiohttp to allows async requests
 - [] add types to the project
+- [] add langsmith support
 
 # Bugs
 - [] fix issue with first build on the server (if there are no changes to the .env the setup will not be run and the whole build will fail)
