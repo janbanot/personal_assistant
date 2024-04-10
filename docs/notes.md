@@ -1,4 +1,6 @@
 # Useful developmnet notes
+### TODO
+change to use https://github.com/casey/just
 
 ## CURLs
 - login
