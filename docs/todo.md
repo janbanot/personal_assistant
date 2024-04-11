@@ -19,10 +19,11 @@
     - [x] check what makes sense i.e. build, then reuse that for tests and if ok, don't build again
     - [x] check why changes in test were not taken into consideration!
 - [x] add discord bot
+    - [] figure out better use of discord slash commands
+    - [] add clearing context automaticaly after some time
 - [x] add basic option to talk with bot using model
+- [x] YT video summary in English
 - [] YT video summary from different languages (whisper?)
-- [] figure out how to clear context automaticaly after some time
-- [] figure out how to categorize message from user automatically, without $command
 - [] longterm memory and personalization RAG
     - [] create tables for longterm memory in postgres
     - [] analyze if/how it should be indexed in the qdrant
