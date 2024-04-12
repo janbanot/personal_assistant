@@ -24,7 +24,7 @@ def yt_summary_route():
 
     llm = ChatOpenAI(model="gpt-3.5-turbo", temperature=0, openai_api_key=openai_key)
 
-    # TODO: test with diffrent params chere and in chain as well
+    # TODO: PL not working automatically, use whisper then
     text_splitter = RecursiveCharacterTextSplitter(chunk_size=2000, chunk_overlap=0)
     texts = text_splitter.split_documents(result)
 
