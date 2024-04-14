@@ -23,7 +23,7 @@
     - [] add clearing context automaticaly after some time
 - [x] add basic option to talk with bot using model
 - [x] YT video summary in English
-- [] YT video summary from different languages (whisper?)
+    - [] YT video summary from different languages (whisper?)
 - [] longterm memory and personalization RAG
     - [] create tables for longterm memory in postgres
     - [] analyze if/how it should be indexed in the qdrant
@@ -44,3 +44,4 @@
 # Bugs
 - [] fix issue with first build on the server (if there are no changes to the .env the setup will not be run and the whole build will fail)
 - [] check why postgres is not destroyed correctly after tests
+- [] check why bot cointainer starts automatically when the docker engine is started
