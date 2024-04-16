@@ -40,6 +40,7 @@
 - [] add types to the project
 - [] add langsmith support
 - [] check coderabbit
+- [] try using qa lanhchain rag
 
 # Bugs
 - [] fix issue with first build on the server (if there are no changes to the .env the setup will not be run and the whole build will fail)
