@@ -35,6 +35,7 @@ You only need to have docker and docker-compose installed on your machine. Then 
 - [x] command to communicate with the assistant
 
 ### Next steps:
+- Improve yt summary to handle different languages and add bot command to use it
 - Improve chatbot functionalities
 - Add predefined prompts to cover frequent use cases
 - Add memory to the chatbot (information about the user, context of the conversation, possibility to save data)

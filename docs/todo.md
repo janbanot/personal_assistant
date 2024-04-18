@@ -31,16 +31,17 @@
     - [] add endpoint to save info to longterm memory
     - [] analzyze a mapping, how can save to longterm memory can be triggered in conversation
     - [] use that in conversation bot
+- [] try using qa lanhchain rag
 - [] test diffrent models
-    - [] groq
     - [] anthropic claude
     - [] anthropic haiku
     - [] gemini
+
+# Nice to have/do
 - [] change used library from request to aiohttp to allows async requests
 - [] add types to the project
 - [] add langsmith support
 - [] check coderabbit
-- [] try using qa lanhchain rag
 
 # Bugs
 - [] fix issue with first build on the server (if there are no changes to the .env the setup will not be run and the whole build will fail)
