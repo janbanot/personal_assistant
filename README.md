@@ -1,7 +1,7 @@
 <p align="center"><img src="docs/logo.png" alt="logo" width="500"/></p>
 
 # Personal Assistant
-Introducing a virtual personal assistant designed to simplify your daily tasks. The assistant can be accessed through the Command Line Interface (CLI) or as a Discord bot. With the assistance of Generative AI, it automates daily activities, making your life more efficient and organized.
+A virtual personal assistant designed to simplify your daily tasks. The assistant can be accessed through the Command Line Interface (CLI) or as a Discord bot. With the assistance of Generative AI, it automates daily activities, making your life more organized and easier.
 
 Project built for the [100 commitów](https://100commitow.pl/) competition. Its goal is to develop an open source project for 100 days.
 
