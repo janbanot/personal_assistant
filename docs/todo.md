@@ -23,7 +23,6 @@
     - [] add clearing context automaticaly after some time
 - [x] add basic option to talk with bot using model
 - [x] YT video summary in English
-    - [] YT video summary from different languages (whisper?)
 - [] longterm memory and personalization RAG
     - [] create tables for longterm memory in postgres
     - [] analyze if/how it should be indexed in the qdrant
@@ -36,12 +35,14 @@
     - [] anthropic claude
     - [] anthropic haiku
     - [] gemini
+    - [] groq
 
 # Nice to have/do
 - [] change used library from request to aiohttp to allows async requests
 - [] add types to the project
 - [] add langsmith support
 - [] check coderabbit
+- [] check cloudflare workers
 
 # Bugs
 - [] fix issue with first build on the server (if there are no changes to the .env the setup will not be run and the whole build will fail)
