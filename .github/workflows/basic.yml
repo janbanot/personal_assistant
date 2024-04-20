@@ -44,6 +44,7 @@ jobs:
           echo "OPENAI_API_KEY=${{ secrets.OPENAI_API_KEY }}" >> .env
           mkdir -p ./discord_bot/
           echo "DISCORD_TOKEN=${{ secrets.DISCORD_TOKEN }}" > ./discord_bot/.env
+          echo "DISCORD_GUILD_ID=${{ secrets.DISCORD_GUILD_ID }}" > ./discord_bot/.env
 
       - name: Run Build
         run: |
