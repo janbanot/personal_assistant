@@ -3,6 +3,7 @@ import json
 import globals
 from datetime import datetime, timedelta
 
+# TODO: refactor the file, because all theses will be simmilar, maybe there is a patter for this
 URL = "http://assistant_proxy:8081/"
 
 
@@ -46,16 +47,27 @@ def hello_world():
 def chat(message):
     headers = {
         "Authorization": f"Bearer {globals.api_token}",
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
     }
     url = URL + "chat"
     data = {"message": message}
     response = requests.post(url, headers=headers, data=json.dumps(data))
-    return response.json()['message']
+    return response.json()["message"]
 
 
 def clear_context():
     headers = {"Authorization": f"Bearer {globals.api_token}"}
     url = URL + "clear-context"
     response = requests.post(url, headers=headers)
-    return response.json()['message']
+    return response.json()["message"]
+
+
+def yt_summary(video_url):
+    headers = {
+        "Authorization": f"Bearer {globals.api_token}",
+        "Content-Type": "application/json",
+    }
+    url = URL + "yt-summary"
+    data = {"url": video_url}
+    response = requests.post(url, headers=headers, data=json.dumps(data))
+    return response.json()["summary"]

@@ -1,10 +1,11 @@
 import os
 import sys
 import logging
+import asyncio
 import discord
 from discord.ext import commands
 from dotenv import load_dotenv
-from utils import login, is_token_valid, hello_world, chat, clear_context
+from utils import login, is_token_valid, hello_world, chat, clear_context, yt_summary
 
 load_dotenv()
 TOKEN = os.getenv("DISCORD_TOKEN")
@@ -59,8 +60,17 @@ async def sync_command(ctx):
     await ctx.send("Commands synced!")
 
 
-@bot.tree.command(name="command-1")
-async def my_command_1(interaction: discord.Interaction) -> None:
-    await interaction.response.send_message("Hello from command 1!")
+@bot.command(name="yt-summary2", description="Get a summary of a YouTube video. Provide a URL")
+async def yt_summary_command2(ctx, url: str):
+    summary = yt_summary(url)
+    await ctx.send(summary)
+
+
+@bot.tree.command(name="yt-summary", description="Get a summary of a YouTube video. Provide a URL")
+async def yt_summary_command(interaction: discord.Interaction, url: str) -> None:
+    await interaction.response.defer(ephemeral=True)
+    await asyncio.sleep(10)
+    summary = yt_summary(url)
+    await interaction.followup.send(summary)
 
 bot.run(TOKEN)

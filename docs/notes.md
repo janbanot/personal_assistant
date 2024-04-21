@@ -24,3 +24,8 @@ TOKEN=$(curl -s -X POST -H "Content-Type: application/json" -d '{"email": "test@
 
 curl -X POST -H "Authorization: Bearer $TOKEN" -H "Content-Type: application/json" -d '{"message": "Hello"}' http://localhost:8081/chat
 ```
+
+- yt_summary endpoint
+```bash
+curl -X POST -H "Authorization: Bearer $TOKEN" -H "Content-Type: application/json" -d '{"url": "https://www.youtube.com/watch?v=YEJUUB1LNFM"}' http://localhost:8081/yt-summary
+```
