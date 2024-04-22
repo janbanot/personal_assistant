@@ -33,6 +33,7 @@ You only need to have docker and docker-compose installed on your machine. Then 
 ### Discord bot
 - [x] bot configuration
 - [x] command to communicate with the assistant
+- [x] command to get YT video summary
 
 ### Next steps:
 - Improve chatbot functionalities

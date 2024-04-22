@@ -69,6 +69,7 @@ async def yt_summary_command2(ctx, url: str):
 @bot.tree.command(name="yt-summary", description="Get a summary of a YouTube video. Provide a URL")
 async def yt_summary_command(interaction: discord.Interaction, url: str) -> None:
     await interaction.response.defer(ephemeral=True)
+    # TODO: figure out a way to make it dynamic (waiting time)
     await asyncio.sleep(10)
     summary = yt_summary(url)
     await interaction.followup.send(summary)

@@ -13,6 +13,7 @@ openai_key = os.getenv("OPENAI_API_KEY")
 yt_summary = Blueprint("yt_summary", __name__)
 
 
+# TODO: make the summary longer, add option to get bullet points
 @yt_summary.route("/yt-summary", methods=["POST"])
 @jwt_required()
 def yt_summary_route():
