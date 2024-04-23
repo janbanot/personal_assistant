@@ -59,7 +59,7 @@ async def sync_command(ctx):
     await bot.tree.sync(guild=MY_GUILD)
     await ctx.send("Commands synced!")
 
-
+# TODO: change all commands to bot.commands, leave only command to list avaliable commands in the tree
 @bot.command(name="yt-summary2", description="Get a summary of a YouTube video. Provide a URL")
 async def yt_summary_command2(ctx, url: str):
     summary = yt_summary(url)
