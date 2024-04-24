@@ -67,7 +67,7 @@ async def yt_summary_command(ctx, url: str):
 
 
 @bot.tree.command(name=BotCommands.LIST_COMMANDS.value, description="Get a list of all available commands")
-async def list_all_command(interaction: discord.Interaction, url: str) -> None:
+async def list_all_commands(interaction: discord.Interaction) -> None:
     commands_list = str(get_bot_commands())
     await interaction.response.send_message(commands_list)
 
