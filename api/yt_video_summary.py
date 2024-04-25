@@ -28,6 +28,7 @@ def yt_summary_route():
     text_splitter = RecursiveCharacterTextSplitter(chunk_size=2000, chunk_overlap=0)
     texts = text_splitter.split_documents(result)
 
+    # TODO: check how to improve the summarization https://python.langchain.com/docs/use_cases/summarization/
     chain = load_summarize_chain(llm=llm, chain_type="map_reduce", verbose=False)
 
     summary = chain.run(texts)
