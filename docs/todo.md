@@ -30,6 +30,7 @@
     - [] add endpoint to save info to longterm memory
     - [] analzyze a mapping, how can save to longterm memory can be triggered in conversation
     - [] use that in conversation bot
+- [] google search endpoint
 - [] try using qa lanhchain rag
 - [] test diffrent models
     - [] anthropic claude
@@ -42,6 +43,8 @@
 - [] add types to the project
 - [] add langsmith support
 - [] check coderabbit
+- [] check dify over langsmith
+- [] try agent like approach
 - [] check cloudflare workers
 
 # Bugs
