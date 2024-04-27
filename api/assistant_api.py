@@ -12,6 +12,7 @@ from flask_jwt_extended import JWTManager, jwt_required, create_access_token
 from werkzeug.security import check_password_hash
 from api.conversation import chat, clear
 from api.yt_video_summary import yt_summary
+from api.assistant_functions import check_english
 
 load_dotenv()
 app = Flask(__name__)
@@ -62,6 +63,7 @@ def login_route():
 app.register_blueprint(chat)
 app.register_blueprint(clear)
 app.register_blueprint(yt_summary)
+app.register_blueprint(check_english)
 
 
 # TODO: fix type and move to a separate file
