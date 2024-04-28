@@ -46,6 +46,7 @@
 - [] check dify over langsmith
 - [] try agent like approach
 - [] check cloudflare workers
+- [] check test containers (https://testcontainers.com/, https://www.docker.com/blog/local-development-of-go-applications-with-testcontainers/)
 
 # Bugs
 - [] fix issue with first build on the server (if there are no changes to the .env the setup will not be run and the whole build will fail)
