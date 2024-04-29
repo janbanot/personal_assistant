@@ -1,2 +1,4 @@
-api_token = None
-api_token_expires_at = None
+from datetime import datetime
+
+api_token: str | None = None
+api_token_expires_at: datetime | None = None

@@ -1,4 +1,6 @@
-from assistant_api import User, db, app
+from api.run import app
+from ..api import db  # type: ignore
+from api.models.user import User
 from werkzeug.security import generate_password_hash
 
 

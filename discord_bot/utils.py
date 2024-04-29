@@ -9,6 +9,7 @@ URL = "http://assistant_proxy:8081/"
 
 def is_token_valid():
     if (
+        # TODO: change to use something else instead of globals to store the token and expiration
         globals.api_token
         and globals.api_token_expires_at
         and globals.api_token_expires_at > datetime.now()

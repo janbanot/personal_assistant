@@ -8,8 +8,15 @@ from utils import login, is_token_valid, hello_world, chat, clear_context, yt_su
 from bot_commands import BotCommands, get_bot_commands
 
 load_dotenv()
+
 TOKEN = os.getenv("DISCORD_TOKEN")
+if not TOKEN:
+    raise ValueError("DISCORD_TOKEN is not set")
+
 GUILD_ID = os.getenv("DISCORD_GUILD_ID")
+if not GUILD_ID:
+    raise ValueError("DISCORD_GUILD_ID is not set")
+
 MY_GUILD = discord.Object(id=GUILD_ID)
 
 intents = discord.Intents.default()
@@ -54,21 +61,28 @@ async def on_message(message):
 
 
 @bot.command(name=BotCommands.SYNC.value)
-async def sync_command(ctx):
+async def sync_command(ctx: commands.Context):
     bot.tree.copy_global_to(guild=MY_GUILD)
     await bot.tree.sync(guild=MY_GUILD)
     await ctx.send("Commands synced!")
 
 
-@bot.command(name=BotCommands.YT_SUMMARY.value, description="Get a summary of a YouTube video. Provide a URL")
-async def yt_summary_command(ctx, url: str):
+@bot.command(
+    name=BotCommands.YT_SUMMARY.value,
+    description="Get a summary of a YouTube video. Provide a URL",
+)
+async def yt_summary_command(ctx: commands.Context, url: str):
     summary = yt_summary(url)
     await ctx.send(summary)
 
 
-@bot.tree.command(name=BotCommands.LIST_COMMANDS.value, description="Get a list of all available commands")
+@bot.tree.command(
+    name=BotCommands.LIST_COMMANDS.value,
+    description="Get a list of all available commands",
+)
 async def list_all_commands(interaction: discord.Interaction) -> None:
     commands_list = str(get_bot_commands())
     await interaction.response.send_message(commands_list)
+
 
 bot.run(TOKEN)

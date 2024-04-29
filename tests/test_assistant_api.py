@@ -1,5 +1,5 @@
 import pytest
-from api.assistant_api import app
+from api.run import app
 
 # from helpers import authenticate_test_client
 
