@@ -1,5 +1,5 @@
 from api.run import app
-from ..api import db  # type: ignore
+from api.extensions import db
 from api.models.user import User
 from werkzeug.security import generate_password_hash
 
