@@ -16,5 +16,7 @@ class BotCommands(Enum):
 
 
 def get_bot_commands():
+    commands = []
     for command in BotCommands:
-        print(f"{command.value.name}: {command.value.description} \n")
+        commands.append(f"{command.value.name}: {command.value.description}")
+    return "\n".join(commands)
