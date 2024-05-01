@@ -68,7 +68,7 @@ async def on_message(message):
     await bot.process_commands(message)
 
 
-@bot.command(name=BotCommands.SYNC.value)
+@bot.command(name="sync", description="Sync commands tree commands")
 async def sync_command(ctx: commands.Context):
     bot.tree.copy_global_to(guild=MY_GUILD)
     await bot.tree.sync(guild=MY_GUILD)
@@ -76,8 +76,8 @@ async def sync_command(ctx: commands.Context):
 
 
 @bot.command(
-    name=BotCommands.YT_SUMMARY.value,
-    description="Get a summary of a YouTube video. Provide a URL",
+    name=BotCommands.YT_SUMMARY.value.name,
+    description=BotCommands.YT_SUMMARY.value.description,
 )
 async def yt_summary_command(ctx: commands.Context, url: str):
     summary = yt_summary(url)
@@ -85,8 +85,8 @@ async def yt_summary_command(ctx: commands.Context, url: str):
 
 
 @bot.command(
-    name=BotCommands.CHECK_ENGLISH.value,
-    description="Check and fix grammatical, spelling, and punctuation errors in English text",
+    name=BotCommands.CHECK_ENGLISH.value.name,
+    description=BotCommands.CHECK_ENGLISH.value.description,
 )
 async def check_english_command(ctx: commands.Context, *, input_text: str):
     fixed_text = check_english(input_text)
@@ -94,7 +94,7 @@ async def check_english_command(ctx: commands.Context, *, input_text: str):
 
 
 @bot.tree.command(
-    name=BotCommands.LIST_COMMANDS.value,
+    name=BotCommands.LIST_COMMANDS.value.name,
     description="Get a list of all available commands",
 )
 async def list_all_commands(interaction: discord.Interaction) -> None:
