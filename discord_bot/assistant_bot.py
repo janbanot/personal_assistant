@@ -4,7 +4,15 @@ import logging
 import discord
 from discord.ext import commands
 from dotenv import load_dotenv
-from utils import login, is_token_valid, hello_world, chat, clear_context, yt_summary
+from utils import (
+    login,
+    is_token_valid,
+    hello_world,
+    chat,
+    clear_context,
+    yt_summary,
+    check_english,
+)
 from bot_commands import BotCommands, get_bot_commands
 
 load_dotenv()
@@ -74,6 +82,15 @@ async def sync_command(ctx: commands.Context):
 async def yt_summary_command(ctx: commands.Context, url: str):
     summary = yt_summary(url)
     await ctx.send(summary)
+
+
+@bot.command(
+    name=BotCommands.CHECK_ENGLISH.value,
+    description="Check and fix grammatical, spelling, and punctuation errors in English text",
+)
+async def check_english_command(ctx: commands.Context, *, input_text: str):
+    fixed_text = check_english(input_text)
+    await ctx.send(fixed_text)
 
 
 @bot.tree.command(

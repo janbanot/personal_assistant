@@ -72,3 +72,14 @@ def yt_summary(video_url):
     data = {"url": video_url}
     response = requests.post(url, headers=headers, data=json.dumps(data))
     return response.json()["summary"]
+
+
+def check_english(text):
+    headers = {
+        "Authorization": f"Bearer {globals.api_token}",
+        "Content-Type": "application/json",
+    }
+    url = URL + "check-english"
+    data = {"text": text}
+    response = requests.post(url, headers=headers, data=json.dumps(data))
+    return response.json()["text"]

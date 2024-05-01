@@ -29,3 +29,8 @@ curl -X POST -H "Authorization: Bearer $TOKEN" -H "Content-Type: application/jso
 ```bash
 curl -X POST -H "Authorization: Bearer $TOKEN" -H "Content-Type: application/json" -d '{"url": "https://www.youtube.com/watch?v=YEJUUB1LNFM"}' http://localhost:8081/yt-summary
 ```
+
+- check_english endpoint
+```bash
+curl -X POST -H "Authorization: Bearer $TOKEN" -H "Content-Type: application/json" -d '{"text": "My name is Susan. Im fourteen and I live in Germany. My hobbies are going to discos, sometimes I listen to music on the radio. In the summer, I go swimming in a lake. I dont have any brothers or sisters. We take buses to school. Im in year 9 at my school. My birthday is on Friday. I hope I will get a new guitar."}' http://localhost:8081/check-english
+```
