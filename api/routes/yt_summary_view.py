@@ -21,7 +21,10 @@ class YTSummaryView(MethodView):
         current_app.logger.info("Request: %s", request)
         current_app.logger.info("URL: %s", url)
 
-        loader = YoutubeLoader.from_youtube_url(url, add_video_info=True)
+        try:
+            loader = YoutubeLoader.from_youtube_url(url, add_video_info=True)
+        except Exception as e:
+            print(f"Invalid YouTube URL: {url}. Error: {e}")
         result = loader.load()
 
         llm = ChatOpenAI(model="gpt-3.5-turbo", temperature=0)
