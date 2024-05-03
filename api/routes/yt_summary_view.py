@@ -29,9 +29,7 @@ class YTSummaryView(MethodView):
 
         llm = ChatOpenAI(model="gpt-3.5-turbo", temperature=0)
 
-        text_splitter = RecursiveCharacterTextSplitter(
-            separators=["\n\n", "\n"], chunk_size=10000, chunk_overlap=500
-        )
+        text_splitter = RecursiveCharacterTextSplitter(chunk_size=10000, chunk_overlap=500)
 
         for document in results:
             text_content = document.page_content
