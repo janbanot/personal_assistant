@@ -48,22 +48,14 @@ class YTSummaryView(MethodView):
             template=map_prompt, input_variables=["text"]
         )
 
-        summary_combine_prompt = """
-        Please provide a detailed and comprehensive summary of the video transcript text.
-        The summary should capture the main points and key details of the text while conveying the author's intended meaning accurately.
-        Second part should be a bulletpoint summary of the text.
-
-        Example:
-        In the video, the author discusses creating a chatbot that reads AI news from different sources using Gradient AI's hosted retrieval solution.
-        They demonstrate how to build the chatbot in a few lines of code and deploy it on Streamlit for easy access.
-
-        - The author created a chatbot that reads AI news from different sources
-        - The chatbot uses Gradient AI's hosted retrieval solution to answer user queries
-        - The chatbot was built in a few lines of code and deployed on Streamlit for easy access
-
+        summary_combine_prompt = """"
+        Write detailed and comprehensive summary of the video transcript text.
+        The summary should cover the main points and key details of the text.
+        Return your response in bullet points.
         ```{text}```
-        SUMMARY:
-        """  # noqa
+        BULLET POINT SUMMARY:
+        """
+
         summary_combine_prompt_template = PromptTemplate(
             template=summary_combine_prompt, input_variables=["text"]
         )
@@ -78,4 +70,5 @@ class YTSummaryView(MethodView):
 
         summary_output = summary_chain.run(docs)
 
+        # TODO: add option to ask question about the video, to extend a point from summary, etc.
         return jsonify({"summary": summary_output})
