@@ -4,6 +4,8 @@ import logging
 import discord
 from discord.ext import commands
 from dotenv import load_dotenv
+import asyncio
+from concurrent.futures import ThreadPoolExecutor
 from utils import (
     login,
     is_token_valid,
@@ -80,7 +82,9 @@ async def sync_command(ctx: commands.Context):
     description=BotCommands.YT_SUMMARY.value.description,
 )
 async def yt_summary_command(ctx: commands.Context, url: str):
-    summary = yt_summary(url)
+    loop = asyncio.get_event_loop()
+    with ThreadPoolExecutor() as pool:
+        summary = await loop.run_in_executor(pool, yt_summary, url)
     await ctx.send(summary)
 
 
