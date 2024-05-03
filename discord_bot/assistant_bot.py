@@ -83,9 +83,13 @@ async def sync_command(ctx: commands.Context):
 )
 async def yt_summary_command(ctx: commands.Context, url: str):
     loop = asyncio.get_event_loop()
-    with ThreadPoolExecutor() as pool:
-        summary = await loop.run_in_executor(pool, yt_summary, url)
-    await ctx.send(summary)
+    try:
+        with ThreadPoolExecutor() as pool:
+            summary = await loop.run_in_executor(pool, yt_summary, url)
+        await ctx.send(summary)
+    finally:
+        if not loop.is_closed():
+            loop.close()
 
 
 @bot.command(
