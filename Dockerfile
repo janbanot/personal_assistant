@@ -6,4 +6,4 @@ COPY tests ./tests
 COPY alembic.ini .
 COPY alembic ./alembic
 EXPOSE 8080
-CMD [ "gunicorn", "--bind", "0.0.0.0:8080", "api.wsgi:app" ]
+CMD [ "gunicorn", "--bind", "0.0.0.0:8080", "--timeout", "180", "api.wsgi:app" ]
