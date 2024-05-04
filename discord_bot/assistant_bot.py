@@ -13,6 +13,7 @@ from utils import (
     chat,
     clear_context,
     yt_summary,
+    page_summary,
     check_english,
 )
 from bot_commands import BotCommands, get_bot_commands
@@ -77,6 +78,7 @@ async def sync_command(ctx: commands.Context):
     await ctx.send("Commands synced!")
 
 
+# TODO: refactor to utilize async and remove duplicated code
 @bot.command(
     name=BotCommands.YT_SUMMARY.value.name,
     description=BotCommands.YT_SUMMARY.value.description,
@@ -85,6 +87,17 @@ async def yt_summary_command(ctx: commands.Context, url: str):
     loop = asyncio.get_event_loop()
     with ThreadPoolExecutor() as pool:
         summary = await loop.run_in_executor(pool, yt_summary, url)
+    await ctx.send(summary)
+
+
+@bot.command(
+    name=BotCommands.PAGE_SUMMARY.value.name,
+    description=BotCommands.PAGE_SUMMARY.value.description,
+)
+async def page_summary_command(ctx: commands.Context, url: str):
+    loop = asyncio.get_event_loop()
+    with ThreadPoolExecutor() as pool:
+        summary = await loop.run_in_executor(pool, page_summary, url)
     await ctx.send(summary)
 
 

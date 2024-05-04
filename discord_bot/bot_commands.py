@@ -9,6 +9,9 @@ class BotCommands(Enum):
     YT_SUMMARY = Command(
         "yt-summary", "get a summary of a YouTube video, provide a URL"
     )
+    PAGE_SUMMARY = Command(
+        "page-summary", "get a summary of a page, provide a URL"
+    )
     CHECK_ENGLISH = Command(
         "check-english",
         "check and fix grammatical, spelling, and punctuation errors in English text",

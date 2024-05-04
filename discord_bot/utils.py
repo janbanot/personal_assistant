@@ -3,7 +3,8 @@ import json
 import globals
 from datetime import datetime, timedelta
 
-# TODO: refactor the file, because all theses will be simmilar, maybe there is a patter for this
+# TODO: refactor the file, because all theses will be simmilar, maybe there is a pattern for this
+# TODO: change to use aiohttp instead of requests, so discord command can utilize async
 URL = "http://assistant_proxy:8081/"
 
 
@@ -56,6 +57,7 @@ def chat(message):
     return response.json()["message"]
 
 
+# TODO: refactor to get rid of duplicated code
 def clear_context():
     headers = {"Authorization": f"Bearer {globals.api_token}"}
     url = URL + "clear-context"
@@ -70,6 +72,17 @@ def yt_summary(video_url):
     }
     url = URL + "yt-summary"
     data = {"url": video_url}
+    response = requests.post(url, headers=headers, data=json.dumps(data))
+    return response.json()["summary"]
+
+
+def page_summary(page_url):
+    headers = {
+        "Authorization": f"Bearer {globals.api_token}",
+        "Content-Type": "application/json",
+    }
+    url = URL + "page-summary"
+    data = {"url": page_url}
     response = requests.post(url, headers=headers, data=json.dumps(data))
     return response.json()["summary"]
 
