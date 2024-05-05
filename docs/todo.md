@@ -30,8 +30,10 @@
     - [] add endpoint to save info to longterm memory
     - [] analzyze a mapping, how can save to longterm memory can be triggered in conversation
     - [] use that in conversation bot
+- [] add functionality to create bookmarks (yt-videos, articles, etc.)
+- [] create a diffrent yt video endpoint - list all elements mentioned in the video with timestamps?
 - [] google search endpoint
-- [] try using qa lanhchain rag
+- [] try using qa lanhgchain rag
 - [] test diffrent models
     - [] anthropic claude
     - [] anthropic haiku
@@ -39,12 +41,13 @@
     - [] groq
 
 # Nice to have/do
+- [] use just for request notes for testing purposes
 - [] change used library from request to aiohttp to allows async requests
 - [] add types to the project
 - [] add langsmith support
 - [] check coderabbit
 - [] check dify over langsmith
-- [] try agent like approach
+- [] play with agents like approach
 - [] check cloudflare workers
 - [] check test containers (https://testcontainers.com/, https://www.docker.com/blog/local-development-of-go-applications-with-testcontainers/)
 

@@ -29,15 +29,18 @@ You only need to have docker and docker-compose installed on your machine. Then 
 - [x] token-based authentication and login process
 - [x] endpoint to communicate with the assistant
 - [x] endpoint to get YT video summary
+- [x] endpoint to get page summary
 
 ### Discord bot
 - [x] bot configuration
 - [x] command to communicate with the assistant
 - [x] command to get YT video summary
+- [x] command to get page summary
+- [x] command to fix English text
 
 ### Next steps:
 - Improve chatbot functionalities
-- Add predefined prompts to cover frequent use cases
+- Add more commands with prompts covering frequent use cases
 - Add memory to the chatbot (information about the user, context of the conversation, possibility to save data)
 
 ## Read more about the project
