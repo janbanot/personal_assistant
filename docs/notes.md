@@ -1,6 +1,7 @@
 # Useful developmnet notes
 ### TODO
 change to use https://github.com/casey/just
+change to use password as variable that is set in the first command and then used in the next ones
 
 ## CURLs
 - login

@@ -1,11 +1,18 @@
+import os
 import requests
 import json
 import globals
 from datetime import datetime, timedelta
+from dotenv import load_dotenv
 
 # TODO: refactor the file, because all theses will be simmilar, maybe there is a pattern for this
 # TODO: change to use aiohttp instead of requests, so discord command can utilize async
-URL = "http://assistant_proxy:8081/"
+
+load_dotenv()
+
+EMAIL = os.getenv("API_USER_EMAIL")
+PASSWORD = os.getenv("API_PASSWORD")
+URL = os.getenv("API_URL")
 
 
 def is_token_valid():
@@ -28,7 +35,7 @@ def is_token_valid():
 def login():
     url = URL + "login"
     headers = {"Content-Type": "application/json"}
-    data = {"email": "test@test.com", "password": "test1"}
+    data = {"email": EMAIL, "password": PASSWORD}
     response = requests.post(url, headers=headers, json=data)
     if response.status_code == 200:
         response_data = response.json()

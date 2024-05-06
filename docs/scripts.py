@@ -1,3 +1,6 @@
+# To run the script you need to execute bash in a runnig api container
+# create a file, paste the content using the cat command (https://stackoverflow.com/a/60224966)
+# and run the script
 from api.run import app
 from api.extensions import db
 from api.models.user import User
