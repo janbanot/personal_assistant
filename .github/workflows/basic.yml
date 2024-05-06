@@ -42,6 +42,9 @@ jobs:
           echo "POSTGRES_PASSWORD=${{ secrets.POSTGRES_PASSWORD }}" >> .env
           echo "POSTGRES_DB=${{ secrets.POSTGRES_DB }}" >> .env
           echo "OPENAI_API_KEY=${{ secrets.OPENAI_API_KEY }}" >> .env
+          echo "API_USER_EMAIL=${{ secrets.API_USER_EMAIL }}" >> .env
+          echo "API_PASSWORD=${{ secrets.API_PASSWORD }}" >> .env
+          echo "API_URL=${{ secrets.API_URL }}" >> .env
           mkdir -p ./discord_bot/
           echo "DISCORD_TOKEN=${{ secrets.DISCORD_TOKEN }}" > ./discord_bot/.env
           echo "DISCORD_GUILD_ID=${{ secrets.DISCORD_GUILD_ID }}" >> ./discord_bot/.env
