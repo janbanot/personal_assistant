@@ -49,6 +49,7 @@ async def on_message(message):
     if message.author == bot.user:
         return
 
+    # TODO: figure out a better way to handle this
     if message.content.startswith("$hello"):
         if is_token_valid():
             await message.channel.send("Hello!")
