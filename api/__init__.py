@@ -2,7 +2,7 @@ import os
 import sys
 import logging
 from flask import Flask
-from api.extensions import db, ma, jwt
+from .extensions import db, ma, jwt
 from api.routes.login_view import LoginView
 from api.routes.chat_view import ChatView
 from api.routes.clear_context_view import ClearView
