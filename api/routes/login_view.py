@@ -3,8 +3,8 @@ from flask.views import MethodView
 from werkzeug.security import check_password_hash
 from flask_jwt_extended import create_access_token
 from datetime import timedelta
-from api.models.user import User
-# from api.models.user_schema import UserSchema
+from api.db.models.user import User
+# from api.db.models.user_schema import UserSchema
 
 
 class LoginView(MethodView):
