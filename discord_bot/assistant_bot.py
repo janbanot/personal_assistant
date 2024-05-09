@@ -9,7 +9,7 @@ from concurrent.futures import ThreadPoolExecutor
 from utils import (
     login,
     is_token_valid,
-    hello_world,
+    # hello_world,
     chat,
     clear_context,
     yt_summary,
@@ -49,25 +49,31 @@ async def on_message(message):
     if message.author == bot.user:
         return
 
-    # TODO: figure out a better way to handle this
-    if message.content.startswith("$hello"):
+    # chat and chat testing channel ids
+    # TODO: move to env variable
+    if (
+        message.channel.id == 1238223813997756446
+        or message.channel.id == 1238228569021349948
+    ):
+        # if message.content.startswith("$hello"):
+        #     if is_token_valid():
+        #         await message.channel.send("Hello!")
+        #         await message.channel.send(hello_world())
+        #     else:
+        #         await message.channel.send("Could not get API token")
+
         if is_token_valid():
-            await message.channel.send("Hello!")
-            await message.channel.send(hello_world())
+            await message.channel.send(chat(message.content))
         else:
             await message.channel.send("Could not get API token")
 
-    if message.content.startswith("$q"):
-        if is_token_valid():
-            await message.channel.send(chat(message.content[3:]))
-        else:
-            await message.channel.send("Could not get API token")
+        # TODO: handle context clearing better
+        if message.content.startswith("$clear"):
+            if is_token_valid():
+                await message.channel.send(clear_context())
+            else:
+                await message.channel.send("Could not get API token")
 
-    if message.content.startswith("$clear"):
-        if is_token_valid():
-            await message.channel.send(clear_context())
-        else:
-            await message.channel.send("Could not get API token")
     # added to process commands, otherwise the bot will not respond to commands
     await bot.process_commands(message)
 
