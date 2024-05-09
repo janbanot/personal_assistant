@@ -3,7 +3,7 @@
 # and run the script
 from api.run import app
 from api.extensions import db
-from api.db.models.user import User
+from api.database.models.user import User
 from werkzeug.security import generate_password_hash
 
 

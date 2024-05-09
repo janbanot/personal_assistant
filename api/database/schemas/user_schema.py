@@ -1,5 +1,5 @@
 from marshmallow_sqlalchemy import SQLAlchemyAutoSchema
-from api.db.models.user import User
+from api.database.models.user import User
 
 
 class UserSchema(SQLAlchemyAutoSchema):

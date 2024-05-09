@@ -1,5 +1,5 @@
 from marshmallow_sqlalchemy import SQLAlchemyAutoSchema
-from api.db.models.chat_history import ChatHistory
+from api.database.models.chat_history import ChatHistory
 
 
 class UserSchema(SQLAlchemyAutoSchema):
