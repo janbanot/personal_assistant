@@ -1,5 +1,9 @@
 # To run the script you need to execute bash in a runnig api container
 # create a file, paste the content using the cat command (https://stackoverflow.com/a/60224966)
+# cat > file_to_edit
+# 1 Write or Paste you text
+# 2 don't forget to leave a blank line at the end of file
+# 3 Ctrl + C to apply configuration
 # and run the script
 from api.run import app
 from api.extensions import db
