@@ -26,7 +26,7 @@ def create_app():
     app.add_url_rule('/', view_func=TestView.as_view('test_view'), methods=['GET',])
     app.add_url_rule('/login', view_func=LoginView.as_view('login_view'), methods=['POST',])
     app.add_url_rule('/chat', view_func=ChatView.as_view('chat_view'), methods=['POST',])
-    app.add_url_rule('/clear-context', ClearView.as_view('clear_view'), methods=['POST',])
+    app.add_url_rule('/clear-context', view_func=ClearView.as_view('clear_view'), methods=['POST',])
     app.add_url_rule('/yt-summary', view_func=YTSummaryView.as_view('yt_summary_view'), methods=['POST',])
     app.add_url_rule('/check-english', view_func=CheckEnglishView.as_view('check_english_view'), methods=['POST',])
     app.add_url_rule('/page-summary', view_func=WebPageSummaryView.as_view('page_summary_view'), methods=['POST',])

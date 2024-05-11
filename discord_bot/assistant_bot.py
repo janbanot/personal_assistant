@@ -30,6 +30,9 @@ if not GUILD_ID:
 
 MY_GUILD = discord.Object(id=GUILD_ID)
 
+# chat, chat-testing
+CHATTING_CHANNELS_IDS = [1238228569021349948, 1238223813997756446]
+
 intents = discord.Intents.default()
 intents.message_content = True
 
@@ -46,36 +49,24 @@ async def on_ready():
 
 @bot.event
 async def on_message(message):
-    if message.author == bot.user:
+    if message.author == bot.user or message.author.bot:
         return
 
-    # chat and chat testing channel ids
-    # TODO: move to env variable
-    if (
-        message.channel.id == 1238223813997756446
-        or message.channel.id == 1238228569021349948
-    ):
-        # if message.content.startswith("$hello"):
-        #     if is_token_valid():
-        #         await message.channel.send("Hello!")
-        #         await message.channel.send(hello_world())
-        #     else:
-        #         await message.channel.send("Could not get API token")
+    if message.channel.id in CHATTING_CHANNELS_IDS:
+        await handle_bot_chatting(message)
 
-        if is_token_valid():
-            await message.channel.send(chat(message.content))
-        else:
-            await message.channel.send("Could not get API token")
-
-        # TODO: handle context clearing better
-        if message.content.startswith("$clear"):
-            if is_token_valid():
-                await message.channel.send(clear_context())
-            else:
-                await message.channel.send("Could not get API token")
-
-    # added to process commands, otherwise the bot will not respond to commands
     await bot.process_commands(message)
+
+
+async def handle_bot_chatting(message):
+    if is_token_valid():
+        if message.content.startswith("!clear"):
+            response = clear_context()
+        else:
+            response = chat(message.content)
+        await message.channel.send(response)
+    else:
+        await message.channel.send("Could not get API token")
 
 
 @bot.command(name="sync", description="Sync commands tree commands")
