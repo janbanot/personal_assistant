@@ -42,6 +42,10 @@ jobs:
           echo "POSTGRES_PASSWORD=${{ secrets.POSTGRES_PASSWORD }}" >> .env
           echo "POSTGRES_DB=${{ secrets.POSTGRES_DB }}" >> .env
           echo "OPENAI_API_KEY=${{ secrets.OPENAI_API_KEY }}" >> .env
+          echo "LANGCHAIN_API_KEY=${{ secrets.LANGCHAIN_API_KEY }}" >> .env
+          echo "LANGCHAIN_TRACING_V2=${{ secrets.LANGCHAIN_TRACING_V2 }}" >> .env
+          echo "LANGCHAIN_PROJECT=${{ secrets.LANGCHAIN_PROJECT }}" >> .env
+          echo "LANGCHAIN_ENDPOINT=${{ secrets.LANGCHAIN_ENDPOINT }}" >> .env
           mkdir -p ./discord_bot/
           echo "DISCORD_TOKEN=${{ secrets.DISCORD_TOKEN }}" > ./discord_bot/.env
           echo "DISCORD_GUILD_ID=${{ secrets.DISCORD_GUILD_ID }}" >> ./discord_bot/.env
@@ -71,6 +75,10 @@ jobs:
           echo "POSTGRES_PASSWORD=${{ secrets.POSTGRES_PASSWORD }}" >> .env
           echo "POSTGRES_DB=${{ secrets.POSTGRES_DB }}" >> .env
           echo "OPENAI_API_KEY=${{ secrets.OPENAI_API_KEY }}" >> .env
+          echo "LANGCHAIN_API_KEY=${{ secrets.LANGCHAIN_API_KEY }}" >> .env
+          echo "LANGCHAIN_TRACING_V2=${{ secrets.LANGCHAIN_TRACING_V2 }}" >> .env
+          echo "LANGCHAIN_PROJECT=${{ secrets.LANGCHAIN_PROJECT }}" >> .env
+          echo "LANGCHAIN_ENDPOINT=${{ secrets.LANGCHAIN_ENDPOINT }}" >> .env
           mkdir -p ./discord_bot/
           echo "DISCORD_TOKEN=${{ secrets.DISCORD_TOKEN }}" > ./discord_bot/.env
           echo "DISCORD_GUILD_ID=${{ secrets.DISCORD_GUILD_ID }}" >> ./discord_bot/.env
