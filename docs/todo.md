@@ -44,7 +44,7 @@
 - [] use just for request notes for testing purposes
 - [] change used library from request to aiohttp to allows async requests
 - [] add types to the project
-- [] add langsmith support
+- [x] add langsmith support
 - [] check coderabbit
 - [] check dify over langsmith
 - [] play with agents like approach
