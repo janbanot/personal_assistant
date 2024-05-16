@@ -45,6 +45,7 @@
 - [] change used library from request to aiohttp to allows async requests
 - [] add types to the project
 - [x] add langsmith support
+- [] try what can be achieved with gpt-4o
 - [] check coderabbit
 - [] check dify over langsmith
 - [] play with agents like approach
