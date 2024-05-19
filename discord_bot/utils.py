@@ -31,6 +31,18 @@ def is_token_valid():
             return False
 
 
+def conversation_handler():
+    if (
+        globals.current_conversation_last_message_timestamp
+        and datetime.now() - globals.current_conversation_last_message_timestamp > timedelta(minutes=10)
+    ):
+        globals.current_conversation_id += 1
+        globals.current_conversation_last_message_timestamp = None
+    # where should it be used?
+    # extra method for each command?
+    # used in chat command and additional clearing for the clear context method?
+
+
 # TODO: change request to aiohttp
 def login():
     url = URL + "login"
