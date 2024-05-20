@@ -22,6 +22,7 @@
     - [] use that in conversation bot
 - [] add functionality to create bookmarks (yt-videos, articles, etc.)
 - [] create a diffrent yt video endpoint - list all elements mentioned in the video with timestamps?
+- [] add integration with apple watch using shortcuts to hit endpoints
 - [] google search endpoint
 - [] try using qa lanhgchain rag
 - [] test diffrent models
