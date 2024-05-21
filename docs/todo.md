@@ -14,17 +14,15 @@
 - [x] add basic option to talk with bot using model
 - [x] YT video summary in English
 - [] longterm memory and personalization RAG
-    - [] create tables for longterm memory in postgres
+    - [x] create tables for longterm memory in postgres
     - [] analyze if/how it should be indexed in the qdrant
     - [] add endpoint to retrieve from longterm memory
     - [] add endpoint to save info to longterm memory
     - [] analzyze a mapping, how can save to longterm memory can be triggered in conversation
     - [] use that in conversation bot
 - [] add functionality to create bookmarks (yt-videos, articles, etc.)
-- [] create a diffrent yt video endpoint - list all elements mentioned in the video with timestamps?
 - [] add integration with apple watch using shortcuts to hit endpoints
 - [] google search endpoint
-- [] try using qa lanhgchain rag
 - [] test diffrent models
     - [] anthropic claude
     - [] anthropic haiku
