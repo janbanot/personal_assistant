@@ -24,8 +24,7 @@
 - [] add integration with apple watch using shortcuts to hit endpoints
 - [] google search endpoint
 - [] test diffrent models
-    - [] anthropic claude
-    - [] anthropic haiku
+    - [] anthropic claude/haiku
     - [] gemini
     - [] groq
 
