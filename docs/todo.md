@@ -41,5 +41,5 @@
 - [] check test containers (https://testcontainers.com/, https://www.docker.com/blog/local-development-of-go-applications-with-testcontainers/)
 
 # Bugs
-- [] fix issue with first build on the server (if there are no changes to the .env the setup will not be run and the whole build will fail)
+- [] fix issue with api not working after some time, no request are being processed and bot is throwning an error about missing summary in response. Add handling for such error and try to fix that issue
 - [] check why bot cointainer starts automatically when the docker engine is started
