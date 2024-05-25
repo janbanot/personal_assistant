@@ -11,10 +11,11 @@ from utils import (
     is_token_valid,
     # hello_world,
     chat,
-    clear_context,
+    # clear_context,
     yt_summary,
     page_summary,
     check_english,
+    conversation_context_handler
 )
 from bot_commands import BotCommands, get_bot_commands
 
@@ -61,8 +62,9 @@ async def on_message(message):
 async def handle_bot_chatting(message):
     if is_token_valid():
         if message.content.startswith("!clear"):
-            response = clear_context()
+            response = conversation_context_handler(force_clear=True)
         else:
+            conversation_context_handler()
             response = chat(message.content)
         await message.channel.send(response)
     else:
@@ -77,6 +79,8 @@ async def sync_command(ctx: commands.Context):
 
 
 # TODO: refactor to utilize async and remove duplicated code
+# TODO: !!!! fix problem with unauthorized error on commands
+# handle 401 errors + add handling for errors in api so in bot we can display anything
 @bot.command(
     name=BotCommands.YT_SUMMARY.value.name,
     description=BotCommands.YT_SUMMARY.value.description,

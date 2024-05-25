@@ -18,6 +18,7 @@ URL = os.getenv("API_URL")
 def is_token_valid():
     if (
         # TODO: change to use something else instead of globals to store the token and expiration
+        # TODO: refactor it to be pythonic
         globals.api_token
         and globals.api_token_expires_at
         and globals.api_token_expires_at > datetime.now()
@@ -31,16 +32,31 @@ def is_token_valid():
             return False
 
 
-def conversation_handler():
-    if (
-        globals.current_conversation_last_message_timestamp
-        and datetime.now() - globals.current_conversation_last_message_timestamp > timedelta(minutes=10)
-    ):
+def update_conversation_timestamp():
+    globals.current_conversation_last_message_timestamp = datetime.now()
+
+
+def is_new_conversation():
+    time_since_last_message = datetime.now() - globals.current_conversation_last_message_timestamp
+    return time_since_last_message > timedelta(minutes=10)
+
+
+def conversation_context_handler(force_clear=False):
+    if force_clear:
         globals.current_conversation_id += 1
-        globals.current_conversation_last_message_timestamp = None
-    # where should it be used?
-    # extra method for each command?
-    # used in chat command and additional clearing for the clear context method?
+        update_conversation_timestamp()
+        return clear_context()
+    elif not globals.current_conversation_id:
+        globals.current_conversation_id = 1
+        update_conversation_timestamp()
+    elif is_new_conversation():
+        globals.current_conversation_id += 1
+        update_conversation_timestamp()
+        clear_context()
+    else:
+        update_conversation_timestamp()
+
+    return None
 
 
 # TODO: change request to aiohttp
