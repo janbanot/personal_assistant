@@ -32,7 +32,7 @@ logging.basicConfig(level=logging.DEBUG, handlers=[logging.StreamHandler(sys.std
 
 @bot.event
 async def on_ready():
-    login()
+    login(config)
     print(f"{bot.user} has connected to Discord!")
 
 
@@ -48,12 +48,12 @@ async def on_message(message):
 
 
 async def handle_bot_chatting(message):
-    if get_valid_token():
+    if get_valid_token(config):
         if message.content.startswith("!clear"):
             response = conversation_context_handler(config, force_clear=True)
         else:
             conversation_context_handler(config)
-            response = chat(message.content)
+            response = chat(config, message.content)
         await message.channel.send(response)
     else:
         await message.channel.send("Could not get API token")
