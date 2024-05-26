@@ -1,4 +1,3 @@
-import os
 import sys
 import logging
 import discord
@@ -6,12 +5,11 @@ from discord.ext import commands
 from dotenv import load_dotenv
 import asyncio
 from concurrent.futures import ThreadPoolExecutor
+from config import Config
 from utils import (
     login,
-    is_token_valid,
-    # hello_world,
+    get_valid_token,
     chat,
-    # clear_context,
     yt_summary,
     page_summary,
     check_english,
@@ -21,18 +19,8 @@ from bot_commands import BotCommands, get_bot_commands
 
 load_dotenv()
 
-TOKEN = os.getenv("DISCORD_TOKEN")
-if not TOKEN:
-    raise ValueError("DISCORD_TOKEN is not set")
-
-GUILD_ID = os.getenv("DISCORD_GUILD_ID")
-if not GUILD_ID:
-    raise ValueError("DISCORD_GUILD_ID is not set")
-
-MY_GUILD = discord.Object(id=GUILD_ID)
-
-# chat, chat-testing
-CHATTING_CHANNELS_IDS = [1238228569021349948, 1238223813997756446]
+config = Config()
+MY_GUILD = discord.Object(id=config.discord_guild_id)
 
 intents = discord.Intents.default()
 intents.message_content = True
@@ -53,18 +41,18 @@ async def on_message(message):
     if message.author == bot.user or message.author.bot:
         return
 
-    if message.channel.id in CHATTING_CHANNELS_IDS:
+    if message.channel.id in config.chatting_channels_ids:
         await handle_bot_chatting(message)
 
     await bot.process_commands(message)
 
 
 async def handle_bot_chatting(message):
-    if is_token_valid():
+    if get_valid_token():
         if message.content.startswith("!clear"):
-            response = conversation_context_handler(force_clear=True)
+            response = conversation_context_handler(config, force_clear=True)
         else:
-            conversation_context_handler()
+            conversation_context_handler(config)
             response = chat(message.content)
         await message.channel.send(response)
     else:
@@ -88,7 +76,7 @@ async def sync_command(ctx: commands.Context):
 async def yt_summary_command(ctx: commands.Context, url: str):
     loop = asyncio.get_event_loop()
     with ThreadPoolExecutor() as pool:
-        summary = await loop.run_in_executor(pool, yt_summary, url)
+        summary = await loop.run_in_executor(pool, yt_summary, config, url)
     await ctx.send(summary)
 
 
@@ -99,7 +87,7 @@ async def yt_summary_command(ctx: commands.Context, url: str):
 async def page_summary_command(ctx: commands.Context, url: str):
     loop = asyncio.get_event_loop()
     with ThreadPoolExecutor() as pool:
-        summary = await loop.run_in_executor(pool, page_summary, url)
+        summary = await loop.run_in_executor(pool, page_summary, config, url)
     await ctx.send(summary)
 
 
@@ -108,7 +96,7 @@ async def page_summary_command(ctx: commands.Context, url: str):
     description=BotCommands.CHECK_ENGLISH.value.description,
 )
 async def check_english_command(ctx: commands.Context, *, input_text: str):
-    fixed_text = check_english(input_text)
+    fixed_text = check_english(config, input_text)
     await ctx.send(fixed_text)
 
 
@@ -121,4 +109,4 @@ async def list_all_commands(interaction: discord.Interaction) -> None:
     await interaction.response.send_message(commands_list)
 
 
-bot.run(TOKEN)
+bot.run(config.discord_token)

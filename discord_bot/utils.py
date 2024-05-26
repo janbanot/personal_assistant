@@ -1,7 +1,6 @@
 import os
 import requests
 import json
-import globals
 from datetime import datetime, timedelta
 from dotenv import load_dotenv
 
@@ -15,42 +14,31 @@ PASSWORD = os.getenv("API_PASSWORD")
 URL = os.getenv("API_URL")
 
 
-def is_token_valid():
-    if (
-        # TODO: change to use something else instead of globals to store the token and expiration
-        # TODO: refactor it to be pythonic
-        globals.api_token
-        and globals.api_token_expires_at
-        and globals.api_token_expires_at > datetime.now()
-    ):
-        return True
-    else:
+def get_valid_token(config):
+    if not config.is_token_valid():
         login()
-        if globals.api_token:
-            return True
-        else:
-            return False
+    return config.is_token_valid()
 
 
-def update_conversation_timestamp():
-    globals.current_conversation_last_message_timestamp = datetime.now()
+def update_conversation_timestamp(config):
+    config.current_conversation_last_message_timestamp = datetime.now()
 
 
-def is_new_conversation():
-    time_since_last_message = datetime.now() - globals.current_conversation_last_message_timestamp
+def is_new_conversation(config):
+    time_since_last_message = datetime.now() - config.current_conversation_last_message_timestamp
     return time_since_last_message > timedelta(minutes=10)
 
 
-def conversation_context_handler(force_clear=False):
+def conversation_context_handler(config, force_clear=False):
     if force_clear:
-        globals.current_conversation_id += 1
+        config.current_conversation_id += 1
         update_conversation_timestamp()
         return clear_context()
-    elif not globals.current_conversation_id:
-        globals.current_conversation_id = 1
+    elif not config.current_conversation_id:
+        config.current_conversation_id = 1
         update_conversation_timestamp()
     elif is_new_conversation():
-        globals.current_conversation_id += 1
+        config.current_conversation_id += 1
         update_conversation_timestamp()
         clear_context()
     else:
@@ -60,30 +48,30 @@ def conversation_context_handler(force_clear=False):
 
 
 # TODO: change request to aiohttp
-def login():
+def login(config):
     url = URL + "login"
     headers = {"Content-Type": "application/json"}
     data = {"email": EMAIL, "password": PASSWORD}
     response = requests.post(url, headers=headers, json=data)
     if response.status_code == 200:
         response_data = response.json()
-        globals.api_token = response_data.get("access_token")
+        config.api_token = response_data.get("access_token")
         expires_in = response_data.get("expires_in")
-        globals.api_token_expires_at = datetime.now() + timedelta(seconds=expires_in)
+        config.api_token_expires_at = datetime.now() + timedelta(seconds=expires_in)
     else:
-        globals.api_token = None
-        globals.api_token_expires_at = None
+        config.api_token = None
+        config.api_token_expires_at = None
 
 
-def hello_world():
-    auth_header = {"Authorization": f"Bearer {globals.api_token}"}
+def hello_world(config):
+    auth_header = {"Authorization": f"Bearer {config.api_token}"}
     response = requests.get(URL, headers=auth_header)
     return response.json()
 
 
-def chat(message):
+def chat(config, message):
     headers = {
-        "Authorization": f"Bearer {globals.api_token}",
+        "Authorization": f"Bearer {config.api_token}",
         "Content-Type": "application/json",
     }
     url = URL + "chat"
@@ -93,16 +81,16 @@ def chat(message):
 
 
 # TODO: refactor to get rid of duplicated code
-def clear_context():
-    headers = {"Authorization": f"Bearer {globals.api_token}"}
+def clear_context(config):
+    headers = {"Authorization": f"Bearer {config.api_token}"}
     url = URL + "clear-context"
     response = requests.post(url, headers=headers)
     return response.json()["message"]
 
 
-def yt_summary(video_url):
+def yt_summary(config, video_url):
     headers = {
-        "Authorization": f"Bearer {globals.api_token}",
+        "Authorization": f"Bearer {config.api_token}",
         "Content-Type": "application/json",
     }
     url = URL + "yt-summary"
@@ -111,9 +99,9 @@ def yt_summary(video_url):
     return response.json()["summary"]
 
 
-def page_summary(page_url):
+def page_summary(config, page_url):
     headers = {
-        "Authorization": f"Bearer {globals.api_token}",
+        "Authorization": f"Bearer {config.api_token}",
         "Content-Type": "application/json",
     }
     url = URL + "page-summary"
@@ -122,9 +110,9 @@ def page_summary(page_url):
     return response.json()["summary"]
 
 
-def check_english(text):
+def check_english(config, text):
     headers = {
-        "Authorization": f"Bearer {globals.api_token}",
+        "Authorization": f"Bearer {config.api_token}",
         "Content-Type": "application/json",
     }
     url = URL + "check-english"
