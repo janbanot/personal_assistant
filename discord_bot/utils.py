@@ -32,17 +32,17 @@ def is_new_conversation(config):
 def conversation_context_handler(config, force_clear=False):
     if force_clear:
         config.current_conversation_id += 1
-        update_conversation_timestamp()
+        update_conversation_timestamp(config)
         return clear_context()
     elif not config.current_conversation_id:
         config.current_conversation_id = 1
-        update_conversation_timestamp()
+        update_conversation_timestamp(config)
     elif is_new_conversation():
         config.current_conversation_id += 1
-        update_conversation_timestamp()
+        update_conversation_timestamp(config)
         clear_context()
     else:
-        update_conversation_timestamp()
+        update_conversation_timestamp(config)
 
     return None
 
