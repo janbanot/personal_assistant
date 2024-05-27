@@ -9,6 +9,7 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
+# TODO: move to config object?
 EMAIL = os.getenv("API_USER_EMAIL")
 PASSWORD = os.getenv("API_PASSWORD")
 URL = os.getenv("API_URL")

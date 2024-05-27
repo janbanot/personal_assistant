@@ -69,6 +69,7 @@ async def sync_command(ctx: commands.Context):
 # TODO: refactor to utilize async and remove duplicated code
 # TODO: !!!! fix problem with unauthorized error on commands
 # handle 401 errors + add handling for errors in api so in bot we can display anything
+# add option to ask more questions about the video based on the content
 @bot.command(
     name=BotCommands.YT_SUMMARY.value.name,
     description=BotCommands.YT_SUMMARY.value.description,
