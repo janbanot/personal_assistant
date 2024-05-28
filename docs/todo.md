@@ -39,6 +39,7 @@
 - [] play with agents like approach
 - [] check cloudflare workers
 - [] check test containers (https://testcontainers.com/, https://www.docker.com/blog/local-development-of-go-applications-with-testcontainers/)
+- [] knowledge base as obsidian vault?
 
 # Bugs
 - [] fix issue with api not working after some time, no request are being processed and bot is throwning an error about missing summary in response. Add handling for such error and try to fix that issue
