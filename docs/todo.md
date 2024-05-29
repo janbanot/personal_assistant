@@ -34,6 +34,7 @@
 - [] add types to the project
 - [x] add langsmith support
 - [] try what can be achieved with gpt-4o
+- [] refactor the code to aviod duplicates
 - [] check coderabbit
 - [] check dify over langsmith
 - [] play with agents like approach
