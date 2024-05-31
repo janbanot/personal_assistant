@@ -3,3 +3,4 @@ __pycache__/
 actions-runner/
 .DS_Store
 .vscode
+.history

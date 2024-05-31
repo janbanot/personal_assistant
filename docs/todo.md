@@ -35,9 +35,8 @@
 - [x] add langsmith support
 - [] try what can be achieved with gpt-4o
 - [] refactor the code to avoid duplicates
-- [] check coderabbit
 - [] check dify over langsmith
-- [] play with agents like approach
+- [] play with agents approach
 - [] check cloudflare workers
 - [] check test containers (https://testcontainers.com/, https://www.docker.com/blog/local-development-of-go-applications-with-testcontainers/)
 - [] knowledge base as obsidian vault?
