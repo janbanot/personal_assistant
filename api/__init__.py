@@ -10,6 +10,7 @@ from api.routes.test_view import TestView
 from api.routes.yt_summary_view import YTSummaryView
 from api.routes.check_english_view import CheckEnglishView
 from api.routes.web_page_summary_view import WebPageSummaryView
+from api.routes.db_conversation_id_view import DBConversationIdView
 
 
 def create_app():
@@ -23,16 +24,67 @@ def create_app():
     ma.init_app(app)
     jwt.init_app(app)
 
-    app.add_url_rule('/', view_func=TestView.as_view('test_view'), methods=['GET',])
-    app.add_url_rule('/login', view_func=LoginView.as_view('login_view'), methods=['POST',])
-    app.add_url_rule('/chat', view_func=ChatView.as_view('chat_view'), methods=['POST',])
-    app.add_url_rule('/clear-context', view_func=ClearView.as_view('clear_view'), methods=['POST',])
-    app.add_url_rule('/yt-summary', view_func=YTSummaryView.as_view('yt_summary_view'), methods=['POST',])
-    app.add_url_rule('/check-english', view_func=CheckEnglishView.as_view('check_english_view'), methods=['POST',])
-    app.add_url_rule('/page-summary', view_func=WebPageSummaryView.as_view('page_summary_view'), methods=['POST',])
+    app.add_url_rule(
+        "/",
+        view_func=TestView.as_view("test_view"),
+        methods=[
+            "GET",
+        ],
+    )
+    app.add_url_rule(
+        "/login",
+        view_func=LoginView.as_view("login_view"),
+        methods=[
+            "POST",
+        ],
+    )
+    app.add_url_rule(
+        "/chat",
+        view_func=ChatView.as_view("chat_view"),
+        methods=[
+            "POST",
+        ],
+    )
+    app.add_url_rule(
+        "/clear-context",
+        view_func=ClearView.as_view("clear_view"),
+        methods=[
+            "POST",
+        ],
+    )
+    app.add_url_rule(
+        "/yt-summary",
+        view_func=YTSummaryView.as_view("yt_summary_view"),
+        methods=[
+            "POST",
+        ],
+    )
+    app.add_url_rule(
+        "/check-english",
+        view_func=CheckEnglishView.as_view("check_english_view"),
+        methods=[
+            "POST",
+        ],
+    )
+    app.add_url_rule(
+        "/page-summary",
+        view_func=WebPageSummaryView.as_view("page_summary_view"),
+        methods=[
+            "POST",
+        ],
+    )
+    app.add_url_rule(
+        "/db/conversation-id",
+        view_func=DBConversationIdView.as_view("db_conversation_id_view"),
+        methods=[
+            "GET",
+        ],
+    )
 
     # Configure logging
-    logging.basicConfig(level=logging.DEBUG, handlers=[logging.StreamHandler(sys.stdout)])
+    logging.basicConfig(
+        level=logging.DEBUG, handlers=[logging.StreamHandler(sys.stdout)]
+    )
     app.logger.info("Starting application")
 
     return app

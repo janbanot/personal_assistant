@@ -13,13 +13,15 @@ from utils import (
     yt_summary,
     page_summary,
     check_english,
-    conversation_context_handler
+    conversation_context_handler,
+    get_conversation_id
 )
 from bot_commands import BotCommands, get_bot_commands
 
 load_dotenv()
 
 config = Config()
+
 MY_GUILD = discord.Object(id=config.discord_guild_id)
 
 intents = discord.Intents.default()
@@ -33,6 +35,9 @@ logging.basicConfig(level=logging.DEBUG, handlers=[logging.StreamHandler(sys.std
 @bot.event
 async def on_ready():
     login(config)
+    # TODO: does it make any sense? (conversation_id endpoint, updating it in config after initialization, etc.)
+    conversation_id = get_conversation_id(config)
+    config.current_conversation_id = conversation_id
     print(f"{bot.user} has connected to Discord!")
 
 

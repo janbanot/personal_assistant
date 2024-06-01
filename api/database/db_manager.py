@@ -20,3 +20,7 @@ class DBManager:
             .all()
         )
         return messages
+
+    def get_current_conversation_id(self):
+        latest_message = db.session.query(ChatHistory).order_by(ChatHistory.message_id.desc()).first()
+        return latest_message.conversation_id if latest_message else 1

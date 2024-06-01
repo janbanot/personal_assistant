@@ -6,7 +6,9 @@ from langchain_openai import ChatOpenAI
 from langchain.prompts.prompt import PromptTemplate
 from langchain.chains import ConversationChain
 from langchain.memory import ConversationSummaryMemory
+from api.database.db_manager import DBManager
 
+# TODO: try to implement it without using the langchain directly
 load_dotenv()
 
 context_memory = ConversationSummaryMemory(llm=ChatOpenAI(), ai_prefix="Assistant")
@@ -37,8 +39,18 @@ conversation = ConversationChain(
 class ChatView(MethodView):
     decorators = [jwt_required()]
 
+    def __init__(self):
+        self.db_manager = DBManager()
+
     def post(self):
         data = request.get_json()
         input_text = data.get("message", "")
+        conversation_id = data.get("conversation_id", "")
+        # TODO: buffer or context_memory?
+        current_context = context_memory.buffer
+
         result = conversation.predict(input=input_text)
+
+        self.db_manager.save_message(conversation_id, input_text, current_context, result)
+
         return jsonify({"message": result})

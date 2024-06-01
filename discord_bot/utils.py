@@ -26,22 +26,25 @@ def update_conversation_timestamp(config):
 
 
 def is_new_conversation(config):
-    time_since_last_message = datetime.now() - config.current_conversation_last_message_timestamp
-    return time_since_last_message > timedelta(minutes=10)
+    if config.current_conversation_last_message_timestamp is None:
+        return True
+    else:
+        time_since_last_message = datetime.now() - config.current_conversation_last_message_timestamp
+        return time_since_last_message > timedelta(minutes=10)
 
 
 def conversation_context_handler(config, force_clear=False):
     if force_clear:
         config.current_conversation_id += 1
         update_conversation_timestamp(config)
-        return clear_context()
+        return clear_context(config)
     elif not config.current_conversation_id:
         config.current_conversation_id = 1
         update_conversation_timestamp(config)
-    elif is_new_conversation():
+    elif is_new_conversation(config):
         config.current_conversation_id += 1
         update_conversation_timestamp(config)
-        clear_context()
+        clear_context(config)
     else:
         update_conversation_timestamp(config)
 
@@ -76,7 +79,7 @@ def chat(config, message):
         "Content-Type": "application/json",
     }
     url = URL + "chat"
-    data = {"message": message}
+    data = {"message": message, "conversation_id": config.current_conversation_id}
     response = requests.post(url, headers=headers, data=json.dumps(data))
     return response.json()["message"]
 
@@ -120,3 +123,12 @@ def check_english(config, text):
     data = {"text": text}
     response = requests.post(url, headers=headers, data=json.dumps(data))
     return response.json()["text"]
+
+
+def get_conversation_id(config):
+    headers = {
+        "Authorization": f"Bearer {config.api_token}"
+    }
+    url = URL + "db/conversation-id"
+    response = requests.get(url, headers=headers)
+    return response.json()["conversation_id"]
