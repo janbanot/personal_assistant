@@ -44,3 +44,4 @@
 # Bugs
 - [] fix issue with api not working after some time, no request are being processed and bot is throwning an error about missing summary in response. Add handling for such error and try to fix that issue
 - [] check why bot cointainer starts automatically when the docker engine is started
+- [] no login attempt before /commands, so there is error in case of no valid token
