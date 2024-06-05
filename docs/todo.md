@@ -30,16 +30,15 @@
 
 # Nice to have/do
 - [] use just for request notes for testing purposes
-- [] change used library from request to aiohttp to allows async requests
+- [] change used library from request to aiohttp to allows async requests to improve performance
 - [] add types to the project
 - [x] add langsmith support
 - [] try what can be achieved with gpt-4o
 - [] refactor the code to avoid duplicates
-- [] check dify over langsmith
 - [] play with agents approach
 - [] check cloudflare workers
 - [] check test containers (https://testcontainers.com/, https://www.docker.com/blog/local-development-of-go-applications-with-testcontainers/)
-- [] knowledge base as obsidian vault?
+- [] check idea of obsidian vault as knwoledge base
 
 # Bugs
 - [] fix issue with api not working after some time, no request are being processed and bot is throwning an error about missing summary in response. Add handling for such error and try to fix that issue
