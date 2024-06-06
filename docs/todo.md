@@ -25,7 +25,6 @@
 - [] google search endpoint
 - [] test diffrent models
     - [] anthropic claude/haiku
-    - [] gemini
     - [] groq
 
 # Nice to have/do
