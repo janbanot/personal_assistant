@@ -22,7 +22,6 @@
     - [] groq
 
 # Nice to have/do
-- [] use just for request notes for testing purposes
 - [] change used library from request to aiohttp to allows async requests to improve performance
 - [] add types to the project
 - [x] add langsmith support
