@@ -17,7 +17,7 @@ URL = os.getenv("API_URL")
 
 def get_valid_token(config):
     if not config.is_token_valid():
-        login()
+        login(config)
     return config.is_token_valid()
 
 
