@@ -66,7 +66,7 @@ class ChatView(MethodView):
         data = request.get_json()
         input_text = data.get("message", "")
         conversation_id = data.get("conversation_id", "")
-        # TODO: buffer or context_memory?
+
         current_context = context_memory.buffer
 
         result = conversation.predict(input=input_text)
