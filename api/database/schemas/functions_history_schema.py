@@ -12,4 +12,5 @@ class FunctionsHistorySchema(SQLAlchemyAutoSchema):
             "user_input",
             "answer",
             "created_at",
+            "context"
         )

@@ -11,3 +11,4 @@ class FunctionsHistory(db.Model):  # type: ignore
     user_input = Column(Text, nullable=False)
     answer = Column(Text, nullable=False)
     created_at = Column(DateTime, nullable=False, server_default=sa.func.now())
+    context = Column(Text, nullable=True)
